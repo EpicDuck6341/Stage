@@ -3,6 +3,7 @@ import subprocess
 import warnings
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
+import warnings
 
 import numba
 import numpy as np
@@ -11,6 +12,8 @@ import torch.nn.functional as F
 
 from .audio import HOP_LENGTH, SAMPLE_RATE, TOKENS_PER_SECOND
 from .tokenizer import Tokenizer
+
+warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
 if TYPE_CHECKING:
     from .model import Whisper

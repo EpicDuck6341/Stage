@@ -88,6 +88,9 @@ def return_confidence(tokens: List[int], token_probs: List[float], tokenizer):
 
 
 def seek_answer(target_word):
+    # Use regular expression to split the text into words and punctuation marks
+    result_array = re.findall(r'\w+|[.,]', result.text)
+
     highest_sim = 0
     for index, word in enumerate(result_array):
         similarity = fuzzywuzzy.fuzz.ratio(target_word, word)
@@ -101,8 +104,5 @@ def seek_answer(target_word):
 
 tokenizer = get_tokenizer(multilingual=model.is_multilingual, language="dutch", task=options.task)
 conf_array = return_confidence(result.tokens, result.token_probs,tokenizer)  # Print the text with colours, and return the confidence of each word.
-
-# Use regular expression to split the text into words and punctuation marks
-result_array = re.findall(r'\w+|[.,]', result.text)
 
 seek_answer("Nederlands")
