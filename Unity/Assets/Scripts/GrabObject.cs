@@ -1,4 +1,8 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrabObject : MonoBehaviour
 {
@@ -9,17 +13,25 @@ public class GrabObject : MonoBehaviour
     private Rigidbody heldObjRB;
 
     [Header("Physics Parameters")]
-    [SerializeField] private float pickupRange = 5.0f;
-    [SerializeField] private float pickupForce = 4.0f;
-    private Camera mainCamera;
+    private float pickupRange = 0.6f; 
+    private float pickupForce = 3.5f;
+    
+    public Camera mainCamera;
+    private TextDisplay td;
 
     private void Start()
     {
         mainCamera = Camera.main;
+        td = GetComponent<TextDisplay>();
+        td.UpdateMessage("Pak de rode bal op",false,0);
     }
 
     private void Update()
     {
+        if (td == null)
+        {
+            td = GetComponent<TextDisplay>();
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if (heldObj == null)
@@ -60,8 +72,10 @@ public class GrabObject : MonoBehaviour
             heldObjRB.constraints = RigidbodyConstraints.FreezePosition;
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
+            td.UpdateMessage("Gooi de rode bal in de hoepel",false,0);
         }
     }
+
 
     private void ThrowObject()
     {
@@ -73,6 +87,7 @@ public class GrabObject : MonoBehaviour
         heldObjRB.constraints = RigidbodyConstraints.None;
         heldObjRB.transform.parent = null;
         heldObjRB.AddForce(throwDirection * pickupForce, ForceMode.Impulse);
+
         heldObj = null;
     }
 }
