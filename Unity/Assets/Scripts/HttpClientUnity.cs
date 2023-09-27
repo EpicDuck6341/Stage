@@ -7,13 +7,11 @@ using UnityEngine;
 public class HttpClientUnity : MonoBehaviour
 {
     private readonly HttpClient client = new HttpClient();
-    private TextDisplay td;
     private float recordingStartTime = -1f; // Initialize to a negative value
     private float recordAfterSec = 3f;
 
     private void Start()
     {
-        td = GetComponent<TextDisplay>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,9 +19,7 @@ public class HttpClientUnity : MonoBehaviour
         // Check if the other collider belongs to an object with a specific tag.
         if (other.gameObject.name == "Sphere")
         {
-            td.UpdateMessage("Goed gedaan", false, 1.5f);
-            td.UpdateMessage("Zeg hardop in de microfoon wat je zojuist gegooid hebt", true, 1.5f);
-            
+
             // Set the recording start time
             recordingStartTime = Time.time;
         }
