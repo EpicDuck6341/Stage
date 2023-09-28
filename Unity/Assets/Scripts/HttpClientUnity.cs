@@ -9,10 +9,7 @@ public class HttpClientUnity : MonoBehaviour
     private readonly HttpClient client = new HttpClient();
     private float recordingStartTime = -1f; // Initialize to a negative value
     private float recordAfterSec = 3f;
-
-    private void Start()
-    {
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {

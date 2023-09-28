@@ -11,12 +11,15 @@ public class GrabObject : MonoBehaviour
 
     [HideInInspector] public GameObject heldObj;
     private Rigidbody heldObjRB;
+    private Collider heldObjC;
 
     [Header("Physics Parameters")] private float pickupRange = 2.0f;
     private float pickupForce = 3.5f;
 
     public Camera mainCamera;
     private int originaLayer;
+
+    public bool canPickup = true;
 
 
     private Coroutine distanceCheckCoroutine; // Added to store the coroutine
@@ -28,63 +31,71 @@ public class GrabObject : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (canPickup)
         {
-            if (heldObj == null)
+            if (Input.GetMouseButtonDown(0))
             {
-                RaycastHit hit;
-                if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+                if (heldObj == null)
                 {
-                    PickupObject(hit.transform.gameObject);
-                    // Start the coroutine when picking up an object
-                    distanceCheckCoroutine = StartCoroutine(CheckObjectInCenter());
+                    RaycastHit hit;
+                    if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit,
+                            pickupRange))
+                    {
+                        PickupObject(hit.transform.gameObject);
+                        // Check for collisions with the SphereCollider
+                    }
+                }
+                else
+                {
+                    ThrowObject();
+                    if (distanceCheckCoroutine != null)
+                    {
+                        StopCoroutine(distanceCheckCoroutine);
+                        distanceCheckCoroutine = null;
+                    }
                 }
             }
-            else
-            {
-                ThrowObject();
-                // Stop the coroutine when throwing the object
-                if (distanceCheckCoroutine != null)
-                {
-                    StopCoroutine(distanceCheckCoroutine);
-                    distanceCheckCoroutine = null;
-                }
-            }
-        }
 
-        if (heldObj != null)
-        {
-            MoveObject();
+            if (heldObj != null)
+            {
+                MoveObject();
+                CheckCubeCollision();
+            }
         }
     }
 
-    private IEnumerator CheckObjectInCenter()
+
+    private void CheckCubeCollision()
     {
-        while (heldObj != null)
+        if (heldObjC != null)
         {
-            // Cast a ray from the center of the screen
-            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
+            Collider objCollider = heldObjC.GetComponent<Collider>();
 
-            if (Physics.Raycast(ray, out hit))
+            if (objCollider != null)
             {
-                string objectName = hit.transform.gameObject.name;
-                // Print the name of the object hit by the ray
-
-
-                if (objectName == "Platform")
+                if (Physics.CheckBox(objCollider.bounds.center, objCollider.bounds.extents))
                 {
-                    // Calculate the new position for the held object (closer to the camera)
-                    Vector3 newPosition =
-                        hit.point - mainCamera.transform.forward *
-                        0.05f; // Replace 'someDistance' with your desired distance
-                    heldObj.transform.position = newPosition;
+                    Collider hitCollider = null;
+                    RaycastHit hit;
+                    if (Physics.Raycast(objCollider.bounds.center, -mainCamera.transform.forward, out hit, 0.1f))
+                    {
+                        hitCollider = hit.collider;
+                    }
+                    
+                    if (hitCollider != null && hitCollider.gameObject.name == "Platform")
+                    {
+                        Vector3 newPosition = heldObj.transform.position - mainCamera.transform.forward * 0.05f;
+                        heldObj.transform.position = newPosition;
+                    }
                 }
             }
-
-            yield return null; // Wait for the next frame
         }
     }
+
+
+
+
+
 
     private void MoveObject()
     {
@@ -106,6 +117,7 @@ public class GrabObject : MonoBehaviour
             heldObjRB.constraints = RigidbodyConstraints.FreezePosition;
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
+            heldObjC = pickObj.GetComponent<Collider>();
             pickObj.layer = LayerMask.NameToLayer("PickedUpObjectLayer");
         }
     }
