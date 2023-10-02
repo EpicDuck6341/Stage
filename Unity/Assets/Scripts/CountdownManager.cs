@@ -9,15 +9,21 @@ public class CountdownManager : MonoBehaviour
 {
     public List<GameObject> goalColliders; // Store references to goal colliders
     public GameObject timer;
-    public bool isStarted;
+    [HideInInspector] public bool isStarted;
     private FirstPersonController FPC;
     private GrabObject GO;
-    private bool timerActive;
+    [HideInInspector] public bool timerActive;
+
+    private AudioPlayer AP;
+    private AudioSource aud;
+
 
     private void Start()
     {
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
+        AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
+        aud = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         timer.SetActive(false);
     }
 
@@ -41,24 +47,28 @@ public class CountdownManager : MonoBehaviour
         FPC.cameraCanMove = true;
         GO.canPickup = true;
         timerActive = false;
+        AP.questionAsked = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject goalCollider in goalColliders)
+        if (!aud.isPlaying)
         {
-            EdgeCollision EC = goalCollider.GetComponent<EdgeCollision>();
-            if (EC != null && EC.isCollision && !isStarted)
+            foreach (GameObject goalCollider in goalColliders)
             {
-                StartTimer(8);
-                EC.isCollision = false;
-                Debug.Log(timerActive);
-            }
-            else
-            {
-                EC.isCollision = false;
+                EdgeCollision EC = goalCollider.GetComponent<EdgeCollision>();
+                if (EC != null && EC.isCollision && !isStarted && !aud.isPlaying)
+                {
+                    StartTimer(8);
+                    EC.isCollision = false;
+                }
+                else
+                {
+                    EC.isCollision = false;
+                }
             }
         }
     }
 }
+
