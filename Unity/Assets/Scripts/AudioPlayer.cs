@@ -8,13 +8,21 @@ public class AudioPlayer : MonoBehaviour
     public AudioClip shovelGrab;
     public AudioClip bucketGrab;
     public AudioClip throwObj;
+    public AudioClip praise;
+    public AudioClip ballQuestion;
+    public AudioClip shovelQuestion;
+    public AudioClip bucketQuestion;
 
     private GrabObject GO;
-    private bool objectThrown = false; 
+    private bool objectThrown = false;
+    private bool praiseSaid = false;
+    private string chosenObj;
 
+    [HideInInspector]
+    public bool questionAsked;
+    
     private AudioSource aud;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
@@ -23,20 +31,22 @@ public class AudioPlayer : MonoBehaviour
         if (rand == 0)
         {
             aud.clip = shovelGrab;
+            chosenObj = "shovel";
         }
         else if (rand == 1)
         {
             aud.clip = bucketGrab;
+            chosenObj = "bucket";
         }
         else
         {
             aud.clip = ballGrab;
+            chosenObj = "ball";
         }
 
         aud.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GO.heldObj != null && !objectThrown)
@@ -45,5 +55,40 @@ public class AudioPlayer : MonoBehaviour
             aud.clip = throwObj;
             aud.Play();
         }
+
+        if (!GO.canPickup && !praiseSaid)
+        {
+            praiseSaid = true;
+            aud.clip = praise;
+            aud.Play();
+        }
+        
+        if (!aud.isPlaying && !GO.canPickup && !questionAsked )
+        {
+            questionAsked = true;
+            PlayNextClip();
+        }
     }
+
+    void PlayNextClip()
+    {
+        switch (chosenObj)
+        {
+            case "shovel":
+                aud.clip = shovelQuestion;
+                break;
+            case "bucket":
+                aud.clip = bucketQuestion;
+                break;
+            case "ball":
+                aud.clip = ballQuestion;
+                break;
+            default:
+                // Handle the default case if needed
+                break;
+        }
+
+        aud.Play();
+    }
+
 }

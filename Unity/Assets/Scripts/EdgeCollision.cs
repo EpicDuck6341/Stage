@@ -9,6 +9,7 @@ public class EdgeCollision : MonoBehaviour
     private Vector3 bucketPos;
     private Vector3 shovelPos;
 
+    [HideInInspector]
     public bool isCollision = false;
     
     private GrabObject GO;
@@ -68,7 +69,6 @@ public class EdgeCollision : MonoBehaviour
     private void HandleCollision(Collider collision)
     {
         // Handle the collision here
-        Debug.Log("Collision detected with: " + collision.gameObject.name);
         string objectName = collision.gameObject.name;
 
         // Check if the object name is in the dictionary
