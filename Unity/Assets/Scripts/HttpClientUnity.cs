@@ -22,10 +22,12 @@ public class HttpClientUnity : MonoBehaviour
         {
             
             var content = new MultipartFormDataContent();
-            
             string fileName = "givenAnswer";
-            fileName = fileName + (RA.count-1) + ".wav";
-            Debug.Log(fileName);
+            if (RA.count > 0)
+            {
+                fileName = fileName + (RA.count - 1) + ".wav";
+            }
+
             // Load the audio file as bytes
             string audioFilePath = Path.Combine(Application.dataPath, "Audio/Recordings/"+fileName);
             byte[] audioBytes = File.ReadAllBytes(audioFilePath);
