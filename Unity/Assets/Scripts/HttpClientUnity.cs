@@ -1,42 +1,54 @@
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class HttpClientUnity : MonoBehaviour
 {
     private readonly HttpClient client = new HttpClient();
-    private GrabObject go;
-    [HideInInspector]
-    public bool hasObjectBeenPickedUp = false; // Flag to track if the condition has been met
+    private string serverUrl = "http://127.0.0.1:5000"; // Replace with your server URL
+    private RecordAudio RA;
 
-    private async Task Start()
+    private void Start()
     {
-        // Initialize the 'go' instance properly.
-        go = GetComponent<GrabObject>();
+        RA = GameObject.Find("AudioManager").GetComponent<RecordAudio>();
     }
 
-    // Update is called once per frame
-    private async Task Update()
+    public async void sendAudio()
     {
-        if (go.heldObj != null && !hasObjectBeenPickedUp)
+        try
         {
-            hasObjectBeenPickedUp = true; // Set the flag to true
-
-            // Call asynchronous network methods in a try/catch block to handle exceptions.
-            try
+            
+            var content = new MultipartFormDataContent();
+            string fileName = "givenAnswer";
+            if (RA.count > 0)
             {
-                using HttpResponseMessage response = await client.GetAsync("http://127.0.0.1:5000/");
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
+                fileName = fileName + (RA.count - 1) + ".wav";
+            }
 
-                Debug.Log(responseBody);
-            }
-            catch (HttpRequestException e)
-            {
-                Debug.LogError("Exception Caught!");
-                Debug.LogError("Message: " + e.Message);
-            }
+            // Load the audio file as bytes
+            string audioFilePath = Path.Combine(Application.dataPath, "Audio/Recordings/"+fileName);
+            byte[] audioBytes = File.ReadAllBytes(audioFilePath);
+
+            // Create a ByteArrayContent with the audio data
+            ByteArrayContent audioContent = new ByteArrayContent(audioBytes);
+            content.Add(audioContent, "audio", fileName);
+
+            // Send the audio as a POST request
+            HttpResponseMessage response = await client.PostAsync($"http://127.0.0.1:5000", content);
+            response.EnsureSuccessStatusCode();
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            Debug.Log(responseBody);
         }
+        catch (HttpRequestException e)
+        {
+            Debug.LogError("Exception Caught!");
+            Debug.LogError("Message: " + e.Message);
+        }
+
     }
 }

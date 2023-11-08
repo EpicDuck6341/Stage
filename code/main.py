@@ -12,42 +12,73 @@ import wavio as wv
 import json
 from flask import Flask, request, jsonify
 
-
 app = Flask(__name__)
+
+# Define the upload folder for audio files
+UPLOAD_FOLDER = "/uploaded"
+Path(UPLOAD_FOLDER).mkdir(parents=True, exist_ok=True)
+
 
 def load_model():
     print('Loading model')
     model = whisper.load_model("small")
     return model
 
-def load_audio():
 
-    # Sampling frequency
-    freq = 44100
-
-    # Recording duration
-    duration = 10
-
-    # Start recorder with the given values
-    # of duration and sample frequency
-    print("Started Recording...")
-    recording = sd.rec(int(duration * freq),
-                    samplerate=freq, channels=2)
-
-    # Record audio for the given number of seconds
-    sd.wait()
-
-    # Convert the NumPy array to audio file
-    wv.write("../audio/test.wav", recording, freq, sampwidth=2)
-    print("Recording Created.")
-
-    print('Loading audio')  # load audio and pad/trim it to fit 30 seconds
-    audio = whisper.load_audio("../audio/test.wav")
+def load_audio(file_path):
+    # Load the uploaded audio file
+    audio = whisper.load_audio(file_path)
     audio = whisper.pad_or_trim(audio)
 
-    mel = whisper.log_mel_spectrogram(audio).to(model.device)  # make log-Mel spectrogram and move to the same device as the model
-
+    mel = whisper.log_mel_spectrogram(audio).to(model.device)
     return mel
+
+
+# Modify the route to accept POST requests for audio upload
+@app.route('/', methods=['POST'])
+def upload_audio():
+    try:
+        # Check if the 'file' field is in the request
+        if 'audio' not in request.files:
+            return "No file part", 400
+
+        file = request.files['audio']
+
+        # Check if the file has a valid filename
+        if file.filename == '':
+            return "No selected file", 400
+
+        if file:
+            # Save the uploaded file to the UPLOAD_FOLDER
+            file_path = Path(UPLOAD_FOLDER) / "givenAnswer.wav"
+            file.save(file_path)
+
+            # Load the uploaded audio for processing
+            mel = load_audio(file_path)
+            options = whisper.DecodingOptions(fp16=False)
+            result = whisper.decode(model, mel, options)
+
+            tokenizer = get_tokenizer(multilingual=model.is_multilingual, language="dutch", task=options.task)
+            conf_array = calculate_confidence(result.tokens, result.token_probs,
+                                              tokenizer)  # Print the text with colors, and return the confidence of each word.
+
+            similar_words = []
+            # Find similar words for each target word
+            target_words = ["Geel", "Blauw", "Groen"]
+            for target_word in target_words:
+                similar_word, _, similarity, confidence = find_most_similar_word(target_word, result.text, conf_array)
+                similar_words.append({
+                    'Target Word': target_word,
+                    'Similar Word': similar_word,
+                    'similarity': similarity,
+                    'confidence': confidence
+                })
+
+            return json.dumps(similar_words)
+
+    except Exception as e:
+        return str(e), 500
+
 
 def calculate_confidence(tokens: List[int], token_probs: List[float], tokenizer_temp):
     init(autoreset=True)  # Initialize colorama
@@ -82,34 +113,34 @@ def calculate_confidence(tokens: List[int], token_probs: List[float], tokenizer_
     print()
     return confidence
 
+
 def find_most_similar_word(target_word, result_text, conf_array):
     # Use regular expression to split the text into words and punctuation marks
     result_array = re.findall(r'\w+|[.,]', result_text)
     sim_index = 0
     highest_sim = 0
     for index, word in enumerate(result_array):
-        similarity = fuzzywuzzy.fuzz.ratio(target_word, word)  # Using Levenshtein Distance to calculate the similarity between two sequences
+        similarity = fuzzywuzzy.fuzz.token_set_ratio(target_word,
+                                           word)  # Using Levenshtein Distance to calculate the similarity between two sequences
         if similarity > highest_sim:  # Search for the highest similarity in the array
             highest_sim = similarity
             sim_index = index
+        else:
+            if similarity == highest_sim and conf_array[sim_index] < conf_array[index]:
+                highest_sim = similarity
+                sim_index = index
 
-    print(f"Similar Word: {result_array[sim_index]}, Target Word: {target_word}, Index: {sim_index}, Similarity: {highest_sim}, Confidence: {conf_array[sim_index]}")
-    return result_array[sim_index],target_word,highest_sim,conf_array[sim_index]
+
+
+    print(
+        f"Similar Word: {result_array[sim_index]}, Target Word: {target_word}, Index: {sim_index}, Similarity: {highest_sim}, Confidence: {conf_array[sim_index]}")
+    return result_array[sim_index], target_word, highest_sim, conf_array[sim_index]
+
 
 @app.route('/', methods=['GET'])
 def main():
-    mel = load_audio()
-    options = whisper.DecodingOptions(fp16=False)
-    result = whisper.decode(model, mel, options)
+    upload_audio()
 
-    tokenizer = get_tokenizer(multilingual=model.is_multilingual, language="dutch", task=options.task)
-    conf_array = calculate_confidence(result.tokens, result.token_probs, tokenizer)  # Print the text with colors, and return the confidence of each word.
-
-    similar_word,target_word,similarity, confidence = find_most_similar_word("Nederlands", result.text, conf_array)
-    return json.dumps({'Target Word': target_word,
-                       'Similar Word':similar_word,
-                       'similarity': similarity,
-                       'confidence': confidence})
 
 if __name__ == "__main__":
     model = load_model()
