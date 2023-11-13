@@ -50,6 +50,11 @@ public class BucketDetect : MonoBehaviour
                     
                 }
             }
+            else if (collision.gameObject.name == "Shell")
+            {
+                Destroy(collision.gameObject);
+                amount++;
+            }
         }
         
     }
