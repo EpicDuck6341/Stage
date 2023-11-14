@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlaceShells : MonoBehaviour
 {
+    //All possible shells are saved into a list
     public List<GameObject> shellArray = new List<GameObject>();
     public int size;
     private GameObject shell;
@@ -14,6 +15,7 @@ public class PlaceShells : MonoBehaviour
         size = shellArray.Count;
     }
 
+    //A random shell is selected and returned, later used as the held object in the GrabObject class
     public GameObject pickShell()
     {
         int index = Random.Range(0, size);
@@ -25,8 +27,5 @@ public class PlaceShells : MonoBehaviour
     }
 
 
-// Update is called once per frame
-    void Update()
-    {
-    }
+
 }

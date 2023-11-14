@@ -19,6 +19,7 @@ public class SpawnShells : MonoBehaviour
         SC = GameObject.Find("Bucket").GetComponent<SpawnCastle>();
     }
 
+    //Used for spawning
     private void SpawnAndConfigureObject(GameObject prefab, Vector3 position, Quaternion rotation, Vector3 scale,
         Material material, string tag)
     {

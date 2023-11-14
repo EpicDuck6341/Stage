@@ -22,6 +22,7 @@ public class SpawnCastle : MonoBehaviour
 
     private void Start()
     {
+        //Spawn floor tiles on which the bottom part will be built
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
         spawnPosition = new Vector3(730, 0.22f, 798);
         Vector3 scale = new Vector3(10, 10, 1);
@@ -37,6 +38,9 @@ public class SpawnCastle : MonoBehaviour
             floorMaterial));
     }
 
+    //Used in the GrabObject class
+    //The name of  object hit with the ray is used as the parameter
+    //Then just if statements to match the correct bottom part to the correct floor part
     public void spawnCastlePart(string castlePart)
     {
         Vector3 scale = new Vector3(10, 10, 10);
@@ -79,6 +83,9 @@ public class SpawnCastle : MonoBehaviour
         }
     }
 
+    //Used in the GrabObject class
+    //The name of  object hit with the ray is used as the parameter
+    //Then just if statements to match the correct tower part to the correct hit part
     public void spawnTowerPart(string castlePart)
     {
         Vector3 scale = new Vector3(10, 10, 10);
@@ -121,6 +128,7 @@ public class SpawnCastle : MonoBehaviour
         }
     }
 
+    //Used for spawning objects
     private GameObject SpawnAndConfigureObject(GameObject prefab, Vector3 position, Quaternion rotation, Vector3 scale,
         Material material)
     {
@@ -175,6 +183,7 @@ public class SpawnCastle : MonoBehaviour
         {
             if (bottomBuilt)
             {
+                //Replace all the loose castle parts with a single pre-built castle prefab
                 spawnPosition = new Vector3(730, 0.221f, 798);
                 SpawnAndConfigureObject(castlePrefabs[0], spawnPosition, Quaternion.Euler(-90, 0, 0),
                     new Vector3(10, 10, 10),
@@ -194,6 +203,7 @@ public class SpawnCastle : MonoBehaviour
 
         if (GO.heldObj != null)
         {
+            //Turn the color of the floor parts green whenever the matching castle part has spawned
             if (spawn[0])
             {
                 setMaterial(castleParts[1], "On", green);

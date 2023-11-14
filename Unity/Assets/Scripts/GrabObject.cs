@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GrabObject : MonoBehaviour
 {
+    //Class used for picking up objects and moving them around
     [Header("Pickup Settings")] [SerializeField]
     private Transform holdArea;
 
@@ -52,46 +53,56 @@ public class GrabObject : MonoBehaviour
 
     private void Update()
     {
+        //Used to lock the player out of interacting with an object
         if (canPickup)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                //Only when the player is not holding an object
                 if (heldObj == null)
                 {
                     RaycastHit hit;
                     if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit,
                             pickupRange))
                     {
+                        //Check for specific tag to see if it is an object that should be picked up
                         if (hit.collider.gameObject.tag == "PickUp")
                         {
                             PickupObject(hit.transform.gameObject);
                         }
                     }
                 }
+                //Only whenever the shells held have the tag's 
                 else if (heldObj.gameObject.tag == "Shell1" ||
                          heldObj.gameObject.tag == "Shell2" ||
                          heldObj.gameObject.tag == "Shell3")
                 {
                     placeShell();
                 }
+                //Because the shells interact differently they have a separate drop function
                 else if (heldObj.gameObject.name == "Shell")
                 {
                     dropShell();
                 }
+                //Only when the bucket isn't filled with sand and the castle hasn't been built yet
+                //Check for the tower, because it's the last part that will be built
                 else if (BD.amount <= 3 && !SC.towerBuilt)
                 {
                     ShovelSand(); //Used for picking up sand
                 }
+                //Only when the bucket it filled with sand, so the amount is equal to 4.
                 else if (bucketFull && !SC.towerBuilt)
                 {
                     UseBucket();
                 }
+                //In all other situations "drop" the object. This will simple return it to the original position in which it spawned
                 else
                 {
                     ThrowObject();
                 }
             }
 
+            //Used for moving around the held object
             if (heldObj != null)
             {
                 MoveObject();
@@ -100,13 +111,16 @@ public class GrabObject : MonoBehaviour
     }
 
 
+    //Used for picking up sand on the shovel.
     private void ShovelSand()
     {
         if (shovelEmpty)
         {
             RaycastHit hit;
+            //Send a ray from the middle of the shovel along the look direction of the camera
             if (Physics.Raycast(heldObj.transform.position, mainCamera.transform.forward, out hit, 0.4f))
             {
+                //if the ray hits the "Ground" it will start a short animation
                 if (hit.collider.name == "Ground")
                 {
                     // Add animation for the held object
@@ -116,11 +130,13 @@ public class GrabObject : MonoBehaviour
             }
         }
 
+        //If the shovel has been filled with sand already
         else
         {
             GameObject cube = heldObj.transform.Find("Cube(Clone)")?.gameObject;
             if (cube != null)
             {
+                //Drop the sand object
                 cube.transform.SetParent(null); // Unparent the cube from the held object
                 cube.layer = LayerMask.NameToLayer("Default");
                 Rigidbody cubeRigidbody = cube.GetComponent<Rigidbody>();
@@ -136,6 +152,8 @@ public class GrabObject : MonoBehaviour
         }
     }
 
+    //Function used for the shovel animation
+    //The shovel moves toward the hit point of the ray found in the ShovelSand function
     private IEnumerator MoveHeldObject(GameObject obj, float duration, Vector3 hit)
     {
         FPC.cameraCanMove = false;
@@ -157,6 +175,7 @@ public class GrabObject : MonoBehaviour
 
         // Wait for 1 second
         yield return new WaitForSeconds(0.6f);
+        //Create a sand object at the tip of the shovel
         GameObject instantiatedPrefab = Instantiate(sand);
         Vector3 newScale = new Vector3(9.5f, 11.5f, 7.5f);
         instantiatedPrefab.transform.localScale = newScale;
@@ -189,6 +208,8 @@ public class GrabObject : MonoBehaviour
         shovelEmpty = false;
     }
 
+    //Different drop function for the shells, as they need to behave differently than other objects.
+    //Difference is that they need to drop instead of teleport back
     private void dropShell()
     {
         heldObj.layer = originaLayer;
@@ -199,8 +220,10 @@ public class GrabObject : MonoBehaviour
         heldObj = null;
     }
 
+    //Function used whenever the bucket is full and will be used for building the sand castle
     private void UseBucket()
     {
+        //Turn of all colliders so that the cast ray doesn't hit the bucket
         Collider[] colliders = heldObj.GetComponents<Collider>();
         foreach (Collider collider in colliders)
         {
@@ -210,10 +233,14 @@ public class GrabObject : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
         {
+            //Objects with the On tag are highlighted in green as to show where the sand castle can be built
             if (hit.collider.gameObject.tag == "On")
             {
+                //Spawn the castle part corresponding to the name of the object with the on tag
+                //Defined in another class
                 SC.spawnCastlePart(hit.collider.gameObject.name);
                 Destroy(hit.collider.gameObject);
+                //Lower the level of sand in the bucket
                 foreach (Transform child in heldObj.transform)
                 {
                     Vector3 newPos =
@@ -222,6 +249,7 @@ public class GrabObject : MonoBehaviour
                     child.gameObject.transform.localPosition = newPos;
                 }
 
+                //If the bottom part has been fully built return the bucket to its original position and handle variables that indicate the current state
                 if (SC.bottomBuilt)
                 {
                     bucketFull = false;
@@ -239,9 +267,13 @@ public class GrabObject : MonoBehaviour
                     ThrowObject();
                 }
             }
+            //Used for building the tower,unlike the On tag which is used for the lower part
             else if (hit.collider.gameObject.tag == "Tower")
             {
+                //Spawn the castle part corresponding to the name of the object with the on tag
+                //Defined in another class
                 SC.spawnTowerPart(hit.collider.gameObject.name);
+                //Lower the level of sand in the bucket
                 foreach (Transform child in heldObj.transform)
                 {
                     Vector3 newPos =
@@ -250,6 +282,7 @@ public class GrabObject : MonoBehaviour
                     child.gameObject.transform.localPosition = newPos;
                 }
 
+                //If the tower part has been fully built return the bucket to its original position and handle variables that indicate the current state
                 if (SC.towerBuilt)
                 {
                     bucketFull = false;
@@ -271,6 +304,7 @@ public class GrabObject : MonoBehaviour
     }
 
 
+    //Apple force to the held object so that it moves towards the center of the screen
     private void MoveObject()
     {
         if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
@@ -280,13 +314,16 @@ public class GrabObject : MonoBehaviour
         }
     }
 
+    //Used for decorating the castle with shells
     private void placeShell()
     {
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
         {
+            //Check if the held shell has the same tag as the transparent hit shell
             if (hit.collider.gameObject.tag == heldObj.gameObject.tag)
             {
+                //Replace the hit shell with the held shell
                 heldObj.layer = LayerMask.NameToLayer("Default");
                 heldObj.GetComponent<MeshCollider>().enabled = false;
                 heldObjRB.transform.parent = null;
@@ -300,6 +337,8 @@ public class GrabObject : MonoBehaviour
         }
     }
 
+    //Used for picking up objects.
+    //Interacts differently for different states and objects
     private void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
@@ -307,6 +346,8 @@ public class GrabObject : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
             {
+                //Only used at the end of the shell assignment
+                //Whenever the bucket is clicked while it's full with shells a random shell will be assigned as the held object
                 if (shellsPickedUp && hit.collider.gameObject.name == "Bucket" && !playerMoved && PS.size > 0)
                 {
                     GameObject obj = PS.pickShell();
@@ -342,6 +383,7 @@ public class GrabObject : MonoBehaviour
                 }
                 else
                 {
+                    //The hit object will be assigned as the held object 
                     originaLayer = pickObj.layer;
                     heldObjRB = pickObj.GetComponent<Rigidbody>();
                     heldObjRB.useGravity = false;
@@ -413,6 +455,8 @@ public class GrabObject : MonoBehaviour
                         Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f;
                         heldObj.transform.position = newPosition;
                     }
+                    //Inspect is used for useless objects that are only placed there to hinder the player 
+                    //Can only inspect whenever the player is present at the original position
                     else if (!playerMoved)
                     {
                         InspectObject(oPos, oScale, oRotation);
@@ -425,6 +469,7 @@ public class GrabObject : MonoBehaviour
 
     private void InspectObject(Vector3 oPos, Vector3 oScale, Quaternion oRotation)
     {
+        //Spins the object around for a couple of seconds
         FPC.cameraCanMove = false;
         canPickup = false;
         Vector3 newScale = heldObj.transform.localScale * 0.5f;
@@ -438,6 +483,7 @@ public class GrabObject : MonoBehaviour
         StartCoroutine(SpinForSeconds(5f, oPos, oScale, oRotation));
     }
 
+    //Used for inspect object spinning
     private IEnumerator SpinForSeconds(float duration, Vector3 oPos, Vector3 oScale, Quaternion oRotation)
     {
         float startRotationY = heldObj.transform.rotation.eulerAngles.y;
@@ -467,6 +513,7 @@ public class GrabObject : MonoBehaviour
     }
 
 
+    //Whenever the object is dropped it's returned back to its original position and the held object is set to nothing
     private void ThrowObject()
     {
         Collider[] colliders = heldObj.GetComponents<Collider>();

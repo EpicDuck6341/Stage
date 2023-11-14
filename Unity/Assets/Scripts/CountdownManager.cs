@@ -49,26 +49,6 @@ public class CountdownManager : MonoBehaviour
         timerActive = false;
         AP.questionAsked = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!aud.isPlaying)
-        {
-            foreach (GameObject goalCollider in goalColliders)
-            {
-                EdgeCollision EC = goalCollider.GetComponent<EdgeCollision>();
-                if (EC != null && EC.isCollision && !isStarted && !aud.isPlaying)
-                {
-                    StartTimer(8);
-                    EC.isCollision = false;
-                }
-                else
-                {
-                    EC.isCollision = false;
-                }
-            }
-        }
-    }
+    
 }
 

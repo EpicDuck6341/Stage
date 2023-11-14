@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BlackScreen : MonoBehaviour
 {
+    //Used for fading the screen to black for teleporting the player to the shells
     public GameObject canvas;
     public GameObject camera;
     public GameObject reticle;
@@ -18,7 +19,11 @@ public class BlackScreen : MonoBehaviour
     {
         imageComponent = canvas.GetComponent<Image>();
     }
+    
+    
 
+    //Slowly turn the screen to black using a canvas
+    //Then teleport and turn the screen back to normal
     public IEnumerator FadeToBlack(float duration,Vector3 pos)
     {
         // Ensure the Image component is not null

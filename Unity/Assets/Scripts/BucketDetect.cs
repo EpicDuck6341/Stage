@@ -25,6 +25,7 @@ public class BucketDetect : MonoBehaviour
                 amount++;
                 if (!spawned)
                 {
+                    //Sand prefab used to show the level of how far the bucket has been filled
                     instantiatedPrefab = Instantiate(bucketFilled);
                     instantiatedPrefab.transform.SetParent(bucket.transform);
                     instantiatedPrefab.GetComponent<MeshCollider>().enabled = false;
@@ -39,6 +40,7 @@ public class BucketDetect : MonoBehaviour
                 }
                 else if (spawned)
                 {
+                    //Increase the prefabs height
                     Vector3 newPos = new Vector3(instantiatedPrefab.transform.localPosition.x,
                         instantiatedPrefab.transform.localPosition.y,
                         instantiatedPrefab.transform.localPosition.z + 0.2f); // Adjust the local position here
@@ -47,6 +49,7 @@ public class BucketDetect : MonoBehaviour
 
                 if (amount > 3)
                 {
+                    //Destroy all sand objects that are laying around whenever the bucket is filled
                     GameObject[] cubes = GameObject.FindGameObjectsWithTag("Sand");
                     foreach (GameObject cube in cubes)
                     {
@@ -60,6 +63,7 @@ public class BucketDetect : MonoBehaviour
                 amount++;
                 if (!spawned)
                 {
+                    //Shell prefab used to show the level of how far the bucket has been filled
                     Destroy(collision.gameObject);
                     instantiatedPrefab = Instantiate(shellFill);
                     instantiatedPrefab.transform.SetParent(bucket.transform);
@@ -75,6 +79,7 @@ public class BucketDetect : MonoBehaviour
                 }
                 else if (spawned)
                 {
+                    //Increase height
                     Vector3 newPos = new Vector3(instantiatedPrefab.transform.localPosition.x,
                         instantiatedPrefab.transform.localPosition.y,
                         instantiatedPrefab.transform.localPosition.z + 0.12f); // Adjust the local position here
@@ -86,6 +91,8 @@ public class BucketDetect : MonoBehaviour
 
     private void Update()
     {
+        //The amount in the bucket gets decreased trough the GrabObject class
+        //Constantly check to see what needs to be done to the spawned variable, this regulates the prefab that is used for the fill height
         if (amount == 0)
         {
             spawned = false;
