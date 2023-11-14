@@ -12,9 +12,8 @@ public class GrabObject : MonoBehaviour
 
     [HideInInspector] public GameObject heldObj;
     private Rigidbody heldObjRB;
-    private Collider heldObjC;
 
-    [Header("Physics Parameters")] private float pickupRange = 8.0f;
+    [Header("Physics Parameters")] public float pickupRange = 8.0f;
     private float pickupForce = 3.5f;
 
     public Camera mainCamera;
@@ -23,6 +22,7 @@ public class GrabObject : MonoBehaviour
     private BucketDetect BD;
     private SpawnCastle SC;
     private BlackScreen BS;
+    private PlaceShells PS;
     public GameObject sand;
     private bool shellsPickedUp;
     private bool playerMoved;
@@ -47,6 +47,7 @@ public class GrabObject : MonoBehaviour
         BD = GameObject.Find("Bucket").GetComponent<BucketDetect>();
         SC = GameObject.Find("Bucket").GetComponent<SpawnCastle>();
         BS = GameObject.Find("CountdownManager").GetComponent<BlackScreen>();
+        PS = GameObject.Find("FirstPersonController").GetComponent<PlaceShells>();
     }
 
     private void Update()
@@ -67,6 +68,16 @@ public class GrabObject : MonoBehaviour
                         }
                     }
                 }
+                else if (heldObj.gameObject.tag == "Shell1" ||
+                         heldObj.gameObject.tag == "Shell2" ||
+                         heldObj.gameObject.tag == "Shell3")
+                {
+                    placeShell();
+                }
+                else if (heldObj.gameObject.name == "Shell")
+                {
+                    dropShell();
+                }
                 else if (BD.amount <= 3 && !SC.towerBuilt)
                 {
                     ShovelSand(); //Used for picking up sand
@@ -75,12 +86,6 @@ public class GrabObject : MonoBehaviour
                 {
                     UseBucket();
                 }
-
-                else if (heldObj.gameObject.name == "Shell")
-                {
-                    dropShell();
-                }
-
                 else
                 {
                     ThrowObject();
@@ -184,6 +189,15 @@ public class GrabObject : MonoBehaviour
         shovelEmpty = false;
     }
 
+    private void dropShell()
+    {
+        heldObj.layer = originaLayer;
+        heldObjRB.useGravity = true;
+        heldObjRB.isKinematic = false;
+        heldObjRB.transform.parent = null;
+        heldObjRB.constraints = RigidbodyConstraints.None;
+        heldObj = null;
+    }
 
     private void UseBucket()
     {
@@ -256,16 +270,6 @@ public class GrabObject : MonoBehaviour
         }
     }
 
-    private void dropShell()
-    {
-        heldObj.layer = originaLayer;
-        heldObjRB.isKinematic = false;
-        heldObjRB.useGravity = true;
-        heldObjRB.transform.parent = null;
-        heldObjRB.constraints = RigidbodyConstraints.None;
-        heldObj = null;
-    }
-
 
     private void MoveObject()
     {
@@ -276,87 +280,144 @@ public class GrabObject : MonoBehaviour
         }
     }
 
+    private void placeShell()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+        {
+            if (hit.collider.gameObject.tag == heldObj.gameObject.tag)
+            {
+                heldObj.layer = LayerMask.NameToLayer("Default");
+                heldObj.GetComponent<MeshCollider>().enabled = false;
+                heldObjRB.transform.parent = null;
+                heldObj.transform.position = hit.collider.gameObject.transform.position;
+                heldObj.transform.localScale = hit.collider.gameObject.transform.localScale;
+                heldObj.transform.rotation = hit.collider.gameObject.transform.rotation;
+                Destroy(hit.collider.gameObject);
+                heldObjRB.constraints = RigidbodyConstraints.None;
+                heldObj = null;
+            }
+        }
+    }
+
     private void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
-            originaLayer = pickObj.layer;
-            heldObjRB = pickObj.GetComponent<Rigidbody>();
-            heldObjRB.useGravity = false;
-            heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
-            heldObjRB.transform.parent = holdArea;
-            heldObj = pickObj;
-            heldObjC = pickObj.GetComponent<Collider>();
-            pickObj.layer = LayerMask.NameToLayer("FirstPerson");
-            oPos = heldObj.transform.position;
-            oScale = heldObj.transform.localScale;
-            oRotation = heldObj.transform.rotation;
-
-            foreach (Transform child in heldObj.transform)
+            RaycastHit hit;
+            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
             {
-                child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
-            }
-
-            //Grab shovel to put sand Can only be done when the castle isn't fully built
-            if (heldObj.gameObject.name == "Shovel" && !SC.towerBuilt)
-            {
-                Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.58f +
-                    mainCamera.transform.right * 0.3f - mainCamera.transform.up * 0.2f;
-                heldObj.transform.position = newPosition;
-                Vector3 newRotation = new Vector3(-70, 0, 0);
-                heldObj.transform.localRotation = Quaternion.Euler(newRotation);
-            }
-            //Can only grab the bucket to build the sand castle when it's full and if the castle isn't built
-            else if (heldObj.gameObject.name == "Bucket" && BD.amount > 3 && !SC.towerBuilt)
-            {
-                SC.spawn[0] = true;
-                Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
-                                      new Vector3(0, 0.5f, 0);
-                heldObj.transform.position = newPosition;
-                bucketFull = true;
-            }
-            //Used for transporting the player and the bucket to the shells
-            else if (SC.towerBuilt && heldObj.gameObject.name == "Bucket" && !playerMoved)
-            {
-                Collider[] colliders = heldObj.GetComponents<Collider>();
-                foreach (Collider collider in colliders)
+                if (shellsPickedUp && hit.collider.gameObject.name == "Bucket" && !playerMoved && PS.size > 0)
                 {
-                    collider.enabled = false;
+                    GameObject obj = PS.pickShell();
+                    originaLayer = obj.layer;
+                    heldObjRB = obj.GetComponent<Rigidbody>();
+                    obj.GetComponent<MeshCollider>().enabled = false;
+                    heldObjRB.useGravity = false;
+                    heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
+                    heldObjRB.transform.parent = holdArea;
+                    heldObj = obj;
+                    obj.layer = LayerMask.NameToLayer("FirstPerson");
+                    Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                                          new Vector3(0, 0.15f, 0);
+                    heldObj.transform.position = newPosition;
+                    if (BD.amount > 0)
+                    {
+                        foreach (Transform child in hit.collider.gameObject.transform)
+                        {
+                            Vector3 newPos =
+                                new Vector3(0, 0,
+                                    child.gameObject.transform.localPosition.z -
+                                    0.1f); // Adjust the local position here
+                            child.gameObject.transform.localPosition = newPos;
+                        }
+                    }
+                    else
+                    {
+                        foreach (Transform child in hit.collider.gameObject.transform)
+                        {
+                            Destroy(child.gameObject);
+                        }
+                    }
                 }
+                else
+                {
+                    originaLayer = pickObj.layer;
+                    heldObjRB = pickObj.GetComponent<Rigidbody>();
+                    heldObjRB.useGravity = false;
+                    heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
+                    heldObjRB.transform.parent = holdArea;
+                    heldObj = pickObj;
+                    pickObj.layer = LayerMask.NameToLayer("FirstPerson");
+                    oPos = heldObj.transform.position;
+                    oScale = heldObj.transform.localScale;
+                    oRotation = heldObj.transform.rotation;
 
-                Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
-                                      new Vector3(0, 0.5f, 0);
-                heldObj.transform.position = newPosition;
-                //Fade to black and transport the camera to the water
-                StartCoroutine(BS.FadeToBlack(0.5f, new Vector3(730, -0.3f, 806)));
-                playerMoved = true;
-                oPos = new Vector3(730, 0.079f, 804.563f);
-            }
-            //Used for transporting the player back when the shells have been picked up
-            else if (heldObj.gameObject.name == "Bucket" && BD.amount == 6 && SC.towerBuilt && !shellsPickedUp &&
-                     playerMoved)
-            {
-                Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
-                                      new Vector3(0, 0.5f, 0);
-                heldObj.transform.position = newPosition;
-                oPos = new Vector3(731.456f, 0.2146099f, 799.8011f);
-                StartCoroutine(BS.FadeToBlack(0.5f, new Vector3(730, 0, 800)));
-                shellsPickedUp = true;
-            }
-            else if (BD.amount == 6 && heldObj.gameObject.name == "Bucket" && shellsPickedUp)
-            {
-                //For picking the shells and placing them on the castle
-                Debug.Log("Hier moet nog wat xdd");
-            }
-            //Used to grab shells and drop them into the bucket
-            else if (heldObj.gameObject.name == "Shell")
-            {
-                Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f;
-                heldObj.transform.position = newPosition;
-            }
-            else
-            {
-                InspectObject(oPos, oScale, oRotation);
+
+                    foreach (Transform child in heldObj.transform)
+                    {
+                        child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
+                    }
+
+                    //Grab shovel to put sand Can only be done when the castle isn't fully built
+                    if (heldObj.gameObject.name == "Shovel" && !SC.towerBuilt)
+                    {
+                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.58f +
+                            mainCamera.transform.right * 0.3f - mainCamera.transform.up * 0.2f;
+                        heldObj.transform.position = newPosition;
+                        Vector3 newRotation = new Vector3(-70, 0, 0);
+                        heldObj.transform.localRotation = Quaternion.Euler(newRotation);
+                    }
+                    //Can only grab the bucket to build the sand castle when it's full and if the castle isn't built
+                    else if (heldObj.gameObject.name == "Bucket" && BD.amount > 3 && !SC.towerBuilt)
+                    {
+                        SC.spawn[0] = true;
+                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                                              new Vector3(0, 0.5f, 0);
+                        heldObj.transform.position = newPosition;
+                        bucketFull = true;
+                    }
+                    //Used for transporting the player and the bucket to the shells
+                    else if (SC.towerBuilt && heldObj.gameObject.name == "Bucket" && !playerMoved && !shellsPickedUp)
+                    {
+                        Collider[] colliders = heldObj.GetComponents<Collider>();
+                        foreach (Collider collider in colliders)
+                        {
+                            collider.enabled = false;
+                        }
+
+                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                                              new Vector3(0, 0.5f, 0);
+                        heldObj.transform.position = newPosition;
+                        //Fade to black and transport the camera to the water
+                        StartCoroutine(BS.FadeToBlack(0.5f, new Vector3(730, -0.3f, 806)));
+                        playerMoved = true;
+                        oPos = new Vector3(730, 0.079f, 804.563f);
+                    }
+                    //Used for transporting the player back when the shells have been picked up
+                    else if (heldObj.gameObject.name == "Bucket" && BD.amount == 6 && SC.towerBuilt &&
+                             !shellsPickedUp &&
+                             playerMoved)
+                    {
+                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                                              new Vector3(0, 0.5f, 0);
+                        heldObj.transform.position = newPosition;
+                        oPos = new Vector3(731.456f, 0.2146099f, 799.8011f);
+                        StartCoroutine(BS.FadeToBlack(0.5f, new Vector3(730, 0, 800)));
+                        shellsPickedUp = true;
+                        playerMoved = false;
+                    }
+                    //Used to grab shells and drop them into the bucket
+                    else if (heldObj.gameObject.name == "Shell")
+                    {
+                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f;
+                        heldObj.transform.position = newPosition;
+                    }
+                    else if (!playerMoved)
+                    {
+                        InspectObject(oPos, oScale, oRotation);
+                    }
+                }
             }
         }
     }
@@ -412,6 +473,11 @@ public class GrabObject : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             collider.enabled = true;
+        }
+
+        foreach (Transform child in heldObj.transform)
+        {
+            child.gameObject.layer = originaLayer;
         }
 
         heldObj.layer = originaLayer;

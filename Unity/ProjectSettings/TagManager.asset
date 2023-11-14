@@ -9,6 +9,9 @@ TagManager:
   - On
   - Tower
   - PickUp
+  - Shell1
+  - Shell2
+  - Shell3
   layers:
   - Default
   - TransparentFX
