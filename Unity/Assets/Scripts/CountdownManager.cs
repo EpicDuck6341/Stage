@@ -7,7 +7,6 @@ using Unity.VisualScripting; // Remove if not needed
 
 public class CountdownManager : MonoBehaviour
 {
-    public List<GameObject> goalColliders; // Store references to goal colliders
     public GameObject timer;
     [HideInInspector] public bool isStarted;
     private FirstPersonController FPC;
@@ -27,12 +26,11 @@ public class CountdownManager : MonoBehaviour
         timer.SetActive(false);
     }
 
-    void StartTimer(float duration)
+    public void StartTimer(float duration)
     {
-        timerActive = true;
-        FPC.cameraCanMove = false;
-        isStarted = true;
         timer.SetActive(true);
+        isStarted = true;
+        timerActive = true;
         timer.transform.Find("RadialProgressBar").GetComponent<CircularProgressBar>().ActivateCountdown(duration);
 
         StartCoroutine(EndTimer(duration));
@@ -41,11 +39,8 @@ public class CountdownManager : MonoBehaviour
     IEnumerator EndTimer(float delay)
     {
         yield return new WaitForSeconds(delay);
-
         isStarted = false;
         timer.SetActive(false);
-        FPC.cameraCanMove = true;
-        GO.canPickup = true;
         timerActive = false;
         AP.questionAsked = false;
     }

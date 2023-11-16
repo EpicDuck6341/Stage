@@ -64,7 +64,7 @@ def upload_audio():
 
             similar_words = []
             # Find similar words for each target word
-            target_words = ["Geel", "Blauw", "Groen"]
+            target_words = ["Surfboard", "Zwemband", "Emmer"]
             for target_word in target_words:
                 similar_word, _, similarity, confidence = find_most_similar_word(target_word, result.text, conf_array)
                 similar_words.append({

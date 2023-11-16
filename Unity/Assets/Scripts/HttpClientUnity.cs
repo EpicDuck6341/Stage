@@ -4,16 +4,19 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using Object = System.Object;
 
 public class HttpClientUnity : MonoBehaviour
 {
     private readonly HttpClient client = new HttpClient();
     private string serverUrl = "http://127.0.0.1:5000"; // Replace with your server URL
     private RecordAudio RA;
+    private ObjectNaming ON;
 
     private void Start()
     {
         RA = GameObject.Find("AudioManager").GetComponent<RecordAudio>();
+        ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
     }
 
     public async void sendAudio()
@@ -41,8 +44,10 @@ public class HttpClientUnity : MonoBehaviour
             response.EnsureSuccessStatusCode();
 
             string responseBody = await response.Content.ReadAsStringAsync();
+            ON.answerGraded = true;
 
             Debug.Log(responseBody);
+            
         }
         catch (HttpRequestException e)
         {

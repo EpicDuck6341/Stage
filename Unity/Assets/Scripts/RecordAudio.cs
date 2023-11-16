@@ -46,7 +46,7 @@ public class RecordAudio : MonoBehaviour
 
         // Save the recorded audio with a unique filename
         string folderPath = Path.Combine(Application.dataPath, "Audio", "Recordings");
-        string baseFileName = "givenAnswer.wav";
+        string baseFileName = "givenAnswer0.wav";
         string filePath = GenerateUniqueFileName(folderPath, baseFileName);
         SaveRecording(filePath);
         

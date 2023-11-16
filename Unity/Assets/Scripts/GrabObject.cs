@@ -53,6 +53,7 @@ public class GrabObject : MonoBehaviour
 
     private void Update()
     {
+        SC.towerBuilt = true;
         //Used to lock the player out of interacting with an object
         if (canPickup)
         {
@@ -111,7 +112,7 @@ public class GrabObject : MonoBehaviour
     }
 
 
-    //Used for picking up sand on the shovel.
+//Used for picking up sand on the shovel.
     private void ShovelSand()
     {
         if (shovelEmpty)
@@ -152,8 +153,8 @@ public class GrabObject : MonoBehaviour
         }
     }
 
-    //Function used for the shovel animation
-    //The shovel moves toward the hit point of the ray found in the ShovelSand function
+//Function used for the shovel animation
+//The shovel moves toward the hit point of the ray found in the ShovelSand function
     private IEnumerator MoveHeldObject(GameObject obj, float duration, Vector3 hit)
     {
         FPC.cameraCanMove = false;
@@ -208,8 +209,8 @@ public class GrabObject : MonoBehaviour
         shovelEmpty = false;
     }
 
-    //Different drop function for the shells, as they need to behave differently than other objects.
-    //Difference is that they need to drop instead of teleport back
+//Different drop function for the shells, as they need to behave differently than other objects.
+//Difference is that they need to drop instead of teleport back
     private void dropShell()
     {
         heldObj.layer = originaLayer;
@@ -220,7 +221,7 @@ public class GrabObject : MonoBehaviour
         heldObj = null;
     }
 
-    //Function used whenever the bucket is full and will be used for building the sand castle
+//Function used whenever the bucket is full and will be used for building the sand castle
     private void UseBucket()
     {
         //Turn of all colliders so that the cast ray doesn't hit the bucket
@@ -304,7 +305,7 @@ public class GrabObject : MonoBehaviour
     }
 
 
-    //Apple force to the held object so that it moves towards the center of the screen
+//Apple force to the held object so that it moves towards the center of the screen
     private void MoveObject()
     {
         if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
@@ -314,7 +315,7 @@ public class GrabObject : MonoBehaviour
         }
     }
 
-    //Used for decorating the castle with shells
+//Used for decorating the castle with shells
     private void placeShell()
     {
         RaycastHit hit;
@@ -337,8 +338,8 @@ public class GrabObject : MonoBehaviour
         }
     }
 
-    //Used for picking up objects.
-    //Interacts differently for different states and objects
+//Used for picking up objects.
+//Interacts differently for different states and objects
     private void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
@@ -371,13 +372,6 @@ public class GrabObject : MonoBehaviour
                                     child.gameObject.transform.localPosition.z -
                                     0.1f); // Adjust the local position here
                             child.gameObject.transform.localPosition = newPos;
-                        }
-                    }
-                    else
-                    {
-                        foreach (Transform child in hit.collider.gameObject.transform)
-                        {
-                            Destroy(child.gameObject);
                         }
                     }
                 }
@@ -483,7 +477,7 @@ public class GrabObject : MonoBehaviour
         StartCoroutine(SpinForSeconds(5f, oPos, oScale, oRotation));
     }
 
-    //Used for inspect object spinning
+//Used for inspect object spinning
     private IEnumerator SpinForSeconds(float duration, Vector3 oPos, Vector3 oScale, Quaternion oRotation)
     {
         float startRotationY = heldObj.transform.rotation.eulerAngles.y;
@@ -513,7 +507,7 @@ public class GrabObject : MonoBehaviour
     }
 
 
-    //Whenever the object is dropped it's returned back to its original position and the held object is set to nothing
+//Whenever the object is dropped it's returned back to its original position and the held object is set to nothing
     private void ThrowObject()
     {
         Collider[] colliders = heldObj.GetComponents<Collider>();

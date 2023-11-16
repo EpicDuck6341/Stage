@@ -14,6 +14,16 @@ public class BucketDetect : MonoBehaviour
     public GameObject bucket;
     private bool spawned;
     private GameObject instantiatedPrefab;
+    private PlaceShells PS;
+    private GrabObject GO;
+    private ObjectNaming ON;
+
+    private void Start()
+    {
+        PS = GameObject.Find("FirstPersonController").GetComponent<PlaceShells>();
+        GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
+        ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
+    }
 
     void OnTriggerEnter(Collider collision)
     {
@@ -96,6 +106,11 @@ public class BucketDetect : MonoBehaviour
         if (amount == 0)
         {
             spawned = false;
+        }
+
+        if (PS.size == 0)
+        {
+            Destroy(instantiatedPrefab);
         }
     }
 }

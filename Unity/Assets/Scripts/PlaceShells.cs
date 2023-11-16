@@ -9,6 +9,7 @@ public class PlaceShells : MonoBehaviour
     public int size;
     private GameObject shell;
     private GameObject obj;
+    
 
     void Start()
     {
