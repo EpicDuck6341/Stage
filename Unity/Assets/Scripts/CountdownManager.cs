@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
-using Unity.VisualScripting; // Remove if not needed
+using Unity.VisualScripting;
+using UnityEngine.UIElements; // Remove if not needed
 
 public class CountdownManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CountdownManager : MonoBehaviour
 
     private AudioPlayer AP;
     private AudioSource aud;
+    private ImageChanger IC;
 
 
     private void Start()
@@ -22,12 +24,14 @@ public class CountdownManager : MonoBehaviour
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
         AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
+        IC = GameObject.Find("Image").GetComponent<ImageChanger>();
         aud = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         timer.SetActive(false);
     }
 
     public void StartTimer(float duration)
     {
+        IC.setImage(IC.sprite[0]);
         timer.SetActive(true);
         isStarted = true;
         timerActive = true;
@@ -43,6 +47,7 @@ public class CountdownManager : MonoBehaviour
         timer.SetActive(false);
         timerActive = false;
         AP.questionAsked = false;
+        IC.setImage(IC.sprite[1]);
     }
     
 }

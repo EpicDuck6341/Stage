@@ -53,7 +53,6 @@ public class GrabObject : MonoBehaviour
 
     private void Update()
     {
-        SC.towerBuilt = true;
         //Used to lock the player out of interacting with an object
         if (canPickup)
         {

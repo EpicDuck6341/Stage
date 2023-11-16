@@ -12,8 +12,8 @@ public class ObjectNaming : MonoBehaviour
     private FirstPersonController FPC;
     private GrabObject GO;
     private CountdownManager CM;
-    private int index = 0;
-    private int size;
+    [HideInInspector] public int index = 0;
+    [HideInInspector] public int size;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +29,6 @@ public class ObjectNaming : MonoBehaviour
     {
         if (index == size)
         {
-            FPC.cameraCanMove = true;
-            GO.canPickup = true;
             answerGraded = false;
         }
         else if (answerGraded)
