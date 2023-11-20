@@ -1,0 +1,3069 @@
+﻿{
+    "strandmevrouw": {
+        "Version": "1.10.1822.1",
+        "Scene": {
+            "Name": true,
+            "SupportShaderSelect": true
+        },
+        "Export Directory": "C:/Users/Daan Hobbel/Desktop/vrouw 7",
+        "Object": {
+            "strandmevrouw": {
+                "Generation": "ActorBuild",
+                "Physics": {
+                    "Collision Shapes": {
+                        "CC_Base_Hip": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 2.0,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -5.0632219314575199,
+                                    2.3955771923065187,
+                                    99.6852798461914
+                                ],
+                                "WorldRotationQ": [
+                                    0.8133671283721924,
+                                    0.06804371625185013,
+                                    -0.09717677533626557,
+                                    0.569526731967926
+                                ],
+                                "WorldScale": [
+                                    1.0000001192092896,
+                                    1.0000001192092896,
+                                    1.0000001192092896
+                                ],
+                                "Radius": 8.779874801635743,
+                                "Capsule Length": 25.383258819580079
+                            },
+                            "Capsule(0)": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 2.0,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    5.063105583190918,
+                                    2.3960821628570558,
+                                    99.68411254882813
+                                ],
+                                "WorldRotationQ": [
+                                    0.8133642077445984,
+                                    -0.06806127727031708,
+                                    0.09720161557197571,
+                                    0.5695246458053589
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0000001192092896,
+                                    1.000000238418579
+                                ],
+                                "Radius": 8.779658317565918,
+                                "Capsule Length": 25.380517959594728
+                            }
+                        },
+                        "CC_Base_L_Thigh": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    8.910262107849121,
+                                    1.9693562984466553,
+                                    68.58283996582031
+                                ],
+                                "WorldRotationQ": [
+                                    -0.017299920320510865,
+                                    0.7152197957038879,
+                                    -0.6983814239501953,
+                                    -0.020609483122825624
+                                ],
+                                "WorldScale": [
+                                    1.0000001192092896,
+                                    1.0000001192092896,
+                                    1.0000001192092896
+                                ],
+                                "Radius": 8.129142761230469,
+                                "Capsule Length": 40.68052673339844
+                            }
+                        },
+                        "CC_Base_L_Calf": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    7.756047248840332,
+                                    4.851132869720459,
+                                    30.702899932861329
+                                ],
+                                "WorldRotationQ": [
+                                    -0.006574315018951893,
+                                    0.70970219373703,
+                                    -0.7044405341148377,
+                                    -0.006568382494151592
+                                ],
+                                "WorldScale": [
+                                    0.999999463558197,
+                                    0.9999993443489075,
+                                    0.9999998807907105
+                                ],
+                                "Radius": 6.164680480957031,
+                                "Capsule Length": 35.07796096801758
+                            }
+                        },
+                        "CC_Base_R_Thigh": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -8.907132148742676,
+                                    1.9587451219558716,
+                                    68.57901000976563
+                                ],
+                                "WorldRotationQ": [
+                                    0.02021459862589836,
+                                    0.715168833732605,
+                                    -0.6984336972236633,
+                                    0.01775449514389038
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    0.9999998807907105,
+                                    0.9999997615814209
+                                ],
+                                "Radius": 8.09339714050293,
+                                "Capsule Length": 40.75369644165039
+                            }
+                        },
+                        "CC_Base_R_Calf": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -7.752450942993164,
+                                    4.823101043701172,
+                                    30.702289581298829
+                                ],
+                                "WorldRotationQ": [
+                                    0.006574247032403946,
+                                    0.709769606590271,
+                                    -0.7043726444244385,
+                                    0.006565507501363754
+                                ],
+                                "WorldScale": [
+                                    0.9999998807907105,
+                                    0.9999998807907105,
+                                    0.9999999403953552
+                                ],
+                                "Radius": 6.154088020324707,
+                                "Capsule Length": 35.09911346435547
+                            }
+                        },
+                        "CC_Base_Spine01": {
+                            "Capsule(1)": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Z",
+                                "Margin": 2.0,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -0.0002060683909803629,
+                                    1.0877376794815064,
+                                    121.28324127197266
+                                ],
+                                "WorldRotationQ": [
+                                    0.44471344351768496,
+                                    0.5497545003890991,
+                                    0.44471344351768496,
+                                    0.5497544407844544
+                                ],
+                                "WorldScale": [
+                                    0.9999998807907105,
+                                    0.9999998807907105,
+                                    1.0
+                                ],
+                                "Radius": 12.7628173828125,
+                                "Capsule Length": 6.1754150390625
+                            }
+                        },
+                        "CC_Base_NeckTwist01": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    0.0023808220867067577,
+                                    6.016036033630371,
+                                    145.5859832763672
+                                ],
+                                "WorldRotationQ": [
+                                    0.7831925749778748,
+                                    0.0,
+                                    0.0,
+                                    0.6217793226242065
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0000001192092896,
+                                    1.0000001192092896
+                                ],
+                                "Radius": 5.2611188888549809,
+                                "Capsule Length": 5.305224418640137
+                            },
+                            "Capsule(0)": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Z",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -0.017173081636428834,
+                                    5.625169277191162,
+                                    134.1859130859375
+                                ],
+                                "WorldRotationQ": [
+                                    0.5538007020950317,
+                                    0.43966442346572878,
+                                    0.5538007020950317,
+                                    0.43966442346572878
+                                ],
+                                "WorldScale": [
+                                    1.0000001192092896,
+                                    1.0000001192092896,
+                                    0.9999999403953552
+                                ],
+                                "Radius": 10.77539348602295,
+                                "Capsule Length": 10.60331916809082
+                            },
+                            "Capsule(1)": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -6.273209571838379,
+                                    0.6751850247383118,
+                                    131.2720489501953
+                                ],
+                                "WorldRotationQ": [
+                                    0.28927651047706606,
+                                    0.6524538397789002,
+                                    0.23139579594135285,
+                                    0.6611195206642151
+                                ],
+                                "WorldScale": [
+                                    0.9999999403953552,
+                                    1.0,
+                                    0.9999999403953552
+                                ],
+                                "Radius": 7.25990104675293,
+                                "Capsule Length": 13.24941635131836
+                            },
+                            "Capsule(2)": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    6.532227039337158,
+                                    -0.09734582155942917,
+                                    131.3797607421875
+                                ],
+                                "WorldRotationQ": [
+                                    0.24265189468860627,
+                                    0.634801983833313,
+                                    0.2761590778827667,
+                                    0.679619550704956
+                                ],
+                                "WorldScale": [
+                                    1.0000001192092896,
+                                    1.0000001192092896,
+                                    1.0000001192092896
+                                ],
+                                "Radius": 7.25990104675293,
+                                "Capsule Length": 13.24941635131836
+                            }
+                        },
+                        "CC_Base_Head": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -0.09048125147819519,
+                                    2.4616475105285646,
+                                    157.71517944335938
+                                ],
+                                "WorldRotationQ": [
+                                    0.688657283782959,
+                                    -0.0053062476217746738,
+                                    0.0025683920830488207,
+                                    0.7250630259513855
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0,
+                                    0.9999999403953552
+                                ],
+                                "Radius": 7.26069450378418,
+                                "Capsule Length": 7.808662414550781
+                            }
+                        },
+                        "CC_Base_L_Upperarm": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    25.341249465942384,
+                                    8.047439575195313,
+                                    137.14280700683595
+                                ],
+                                "WorldRotationQ": [
+                                    0.4984418749809265,
+                                    0.5023942589759827,
+                                    -0.4992135465145111,
+                                    0.4999416470527649
+                                ],
+                                "WorldScale": [
+                                    0.9999998807907105,
+                                    0.9999998807907105,
+                                    1.0
+                                ],
+                                "Radius": 5.0454277992248539,
+                                "Capsule Length": 22.94369125366211
+                            }
+                        },
+                        "CC_Base_L_Forearm": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    53.410850524902347,
+                                    7.982539176940918,
+                                    138.15960693359376
+                                ],
+                                "WorldRotationQ": [
+                                    0.4948146939277649,
+                                    0.5059977173805237,
+                                    -0.4957675337791443,
+                                    0.5033281445503235
+                                ],
+                                "WorldScale": [
+                                    0.9999998211860657,
+                                    0.9999997615814209,
+                                    1.0
+                                ],
+                                "Radius": 3.494969367980957,
+                                "Capsule Length": 22.913387298583986
+                            }
+                        },
+                        "CC_Base_L_Hand": {
+                            "Capsule": {
+                                "Bone Active": false,
+                                "Bound Type": "Box",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    71.22700500488281,
+                                    6.475120544433594,
+                                    137.9932403564453
+                                ],
+                                "WorldRotationQ": [
+                                    -0.4913334548473358,
+                                    -0.5065661668777466,
+                                    0.5099060535430908,
+                                    -0.4919126033782959
+                                ],
+                                "WorldScale": [
+                                    0.9999997615814209,
+                                    0.9999997615814209,
+                                    0.9999999403953552
+                                ],
+                                "Extent": [
+                                    4.5229105949401859,
+                                    9.572021484375,
+                                    8.070646286010743
+                                ]
+                            }
+                        },
+                        "CC_Base_R_Upperarm": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -25.348194122314454,
+                                    8.047330856323243,
+                                    137.14320373535157
+                                ],
+                                "WorldRotationQ": [
+                                    -0.49844205379486086,
+                                    0.5023941993713379,
+                                    -0.49921318888664248,
+                                    -0.49994176626205447
+                                ],
+                                "WorldScale": [
+                                    0.9999996423721314,
+                                    0.9999997615814209,
+                                    0.9999997615814209
+                                ],
+                                "Radius": 5.0451884269714359,
+                                "Capsule Length": 22.957778930664064
+                            }
+                        },
+                        "CC_Base_R_Forearm": {
+                            "Capsule": {
+                                "Bone Active": true,
+                                "Bound Type": "Capsule",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -53.411861419677737,
+                                    7.98171329498291,
+                                    138.4618377685547
+                                ],
+                                "WorldRotationQ": [
+                                    0.4948148727416992,
+                                    -0.5059977173805237,
+                                    0.4957672357559204,
+                                    0.5033283233642578
+                                ],
+                                "WorldScale": [
+                                    0.9999998211860657,
+                                    0.9999997615814209,
+                                    0.9999998807907105
+                                ],
+                                "Radius": 3.4925577640533449,
+                                "Capsule Length": 22.91506576538086
+                            }
+                        },
+                        "CC_Base_R_Hand": {
+                            "Capsule": {
+                                "Bone Active": false,
+                                "Bound Type": "Box",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    -71.24215698242188,
+                                    6.741408824920654,
+                                    137.96986389160157
+                                ],
+                                "WorldRotationQ": [
+                                    0.49133381247520449,
+                                    -0.5065661072731018,
+                                    0.5099056363105774,
+                                    0.49191272258758547
+                                ],
+                                "WorldScale": [
+                                    0.9999997615814209,
+                                    0.9999996423721314,
+                                    0.9999997019767761
+                                ],
+                                "Extent": [
+                                    5.31480073928833,
+                                    9.573328018188477,
+                                    8.195566177368164
+                                ]
+                            }
+                        },
+                        "Hair_Base002": {
+                            "": {
+                                "Bone Active": false,
+                                "Bound Type": "Box",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "WorldRotationQ": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "Extent": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        },
+                        "Bun002": {
+                            "": {
+                                "Bone Active": false,
+                                "Bound Type": "Box",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "WorldRotationQ": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "Extent": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        },
+                        "Real_Hair002": {
+                            "": {
+                                "Bone Active": false,
+                                "Bound Type": "Box",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "WorldRotationQ": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "Extent": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        },
+                        "Bang002": {
+                            "": {
+                                "Bone Active": false,
+                                "Bound Type": "Box",
+                                "Bound Axis": "Y",
+                                "Margin": 0.800000011920929,
+                                "Friction": 0.05000000074505806,
+                                "Elasticity": 0.5,
+                                "WorldTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "WorldRotationQ": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "WorldScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "Extent": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        }
+                    }
+                },
+                "Meshes": {
+                    "CC_Game_Body": {
+                        "Materials": {
+                            "Ga_Skin_Arm": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    50.000003814697269,
+                                    50.000003814697269,
+                                    50.000003814697269
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Arm_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Arm_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Arm/Ga_Skin_Arm_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Arm/Ga_Skin_Arm_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Arm/Ga_Skin_Arm_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLSSS",
+                                    "Image": {
+                                        "Transmission Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_TransMap.png"
+                                        },
+                                        "RGBA Area Mask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_RGBAMask.tga"
+                                        },
+                                        "SSS Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_SSSMap.jpg"
+                                        },
+                                        "MicroNormal": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroN.png"
+                                        },
+                                        "MicroNormalMask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroNMask.jpg"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "_BaseColorMap Brightness": 0.0,
+                                        "_BaseColorMap Saturation": 0.0,
+                                        "AO Map Affect All Lights": 0.0,
+                                        "Flip MicroNormal Y": 1.0,
+                                        "MicroNormal Tiling": 42.0,
+                                        "MicroNormal Strength": 1.0,
+                                        "_Specular": 0.4000000059604645,
+                                        "Micro Roughness Scale": -0.05000000074505806,
+                                        "R Channel Roughness Scale": 0.0,
+                                        "G Channel Roughness Scale": 0.0,
+                                        "B Channel Roughness Scale": 0.0,
+                                        "A Channel Roughness Scale": 0.0,
+                                        "Unmasked Roughness Scale": 0.0,
+                                        "Edge Roughness Multiplier": 0.10000000149011612,
+                                        "R Channel Scatter Scale": 1.0,
+                                        "G Channel Scatter Scale": 1.0,
+                                        "B Channel Scatter Scale": 1.0,
+                                        "A Channel Scatter Scale": 1.0,
+                                        "Unmasked Scatter Scale": 1.0
+                                    }
+                                },
+                                "Subsurface Scatter": {
+                                    "Falloff": [
+                                        255.0,
+                                        94.3499984741211,
+                                        76.5
+                                    ],
+                                    "Radius": 2.0,
+                                    "Distribution": 0.4000000059604645,
+                                    "IOR": 3.0,
+                                    "DecayScale": 0.15000000596046449,
+                                    "Lerp": 0.8500000238418579
+                                }
+                            },
+                            "Ga_Skin_Body": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    50.000003814697269,
+                                    50.000003814697269,
+                                    50.000003814697269
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Body_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Body_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Body/Ga_Skin_Body_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Body/Ga_Skin_Body_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Body/Ga_Skin_Body_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLSSS",
+                                    "Image": {
+                                        "Transmission Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_TransMap.png"
+                                        },
+                                        "RGBA Area Mask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_RGBAMask.tga"
+                                        },
+                                        "SSS Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_SSSMap.jpg"
+                                        },
+                                        "MicroNormal": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroN.png"
+                                        },
+                                        "MicroNormalMask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroNMask.jpg"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "_BaseColorMap Brightness": 0.0,
+                                        "_BaseColorMap Saturation": 0.0,
+                                        "AO Map Affect All Lights": 0.0,
+                                        "Flip MicroNormal Y": 1.0,
+                                        "MicroNormal Tiling": 42.0,
+                                        "MicroNormal Strength": 1.0,
+                                        "_Specular": 0.4000000059604645,
+                                        "Micro Roughness Scale": -0.05000000074505806,
+                                        "R Channel Roughness Scale": 0.0,
+                                        "G Channel Roughness Scale": 0.0,
+                                        "B Channel Roughness Scale": 0.0,
+                                        "A Channel Roughness Scale": 0.0,
+                                        "Unmasked Roughness Scale": 0.0,
+                                        "Edge Roughness Multiplier": 0.10000000149011612,
+                                        "R Channel Scatter Scale": 1.0,
+                                        "G Channel Scatter Scale": 1.0,
+                                        "B Channel Scatter Scale": 1.0,
+                                        "A Channel Scatter Scale": 1.0,
+                                        "Unmasked Scatter Scale": 1.0
+                                    }
+                                },
+                                "Subsurface Scatter": {
+                                    "Falloff": [
+                                        255.0,
+                                        94.3499984741211,
+                                        76.5
+                                    ],
+                                    "Radius": 2.0,
+                                    "Distribution": 0.4000000059604645,
+                                    "IOR": 3.0,
+                                    "DecayScale": 0.15000000596046449,
+                                    "Lerp": 0.8500000238418579
+                                }
+                            },
+                            "Ga_Skin_Head": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    50.000003814697269,
+                                    50.000003814697269,
+                                    50.000003814697269
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Head_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Head_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLSSS",
+                                    "Image": {
+                                        "Transmission Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_TransMap.png"
+                                        },
+                                        "RGBA Area Mask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_RGBAMask.tga"
+                                        },
+                                        "SSS Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_SSSMap.jpg"
+                                        },
+                                        "MicroNormal": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroN.png"
+                                        },
+                                        "MicroNormalMask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroNMask.jpg"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "_BaseColorMap Brightness": 0.0,
+                                        "_BaseColorMap Saturation": 0.0,
+                                        "AO Map Affect All Lights": 0.0,
+                                        "Flip MicroNormal Y": 1.0,
+                                        "MicroNormal Tiling": 20.0,
+                                        "MicroNormal Strength": 0.800000011920929,
+                                        "_Specular": 0.4000000059604645,
+                                        "Micro Roughness Scale": 0.16599999368190766,
+                                        "R Channel Roughness Scale": 0.0,
+                                        "G Channel Roughness Scale": 0.0,
+                                        "B Channel Roughness Scale": 0.0,
+                                        "A Channel Roughness Scale": 0.0,
+                                        "Unmasked Roughness Scale": -0.10999999940395355,
+                                        "Edge Roughness Multiplier": 0.04399999976158142,
+                                        "R Channel Scatter Scale": 1.0,
+                                        "G Channel Scatter Scale": 1.0,
+                                        "B Channel Scatter Scale": 1.0,
+                                        "A Channel Scatter Scale": 1.0,
+                                        "Unmasked Scatter Scale": 1.0
+                                    }
+                                },
+                                "Subsurface Scatter": {
+                                    "Falloff": [
+                                        255.0,
+                                        94.3499984741211,
+                                        76.5
+                                    ],
+                                    "Radius": 1.7999999523162842,
+                                    "Distribution": 0.4000000059604645,
+                                    "IOR": 3.0,
+                                    "DecayScale": 0.15000000596046449,
+                                    "Lerp": 0.8500000238418579
+                                }
+                            },
+                            "Ga_Skin_Leg": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    50.000003814697269,
+                                    50.000003814697269,
+                                    50.000003814697269
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Leg_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Skin_Leg_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Leg/Ga_Skin_Leg_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Leg/Ga_Skin_Leg_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Leg/Ga_Skin_Leg_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLSSS",
+                                    "Image": {
+                                        "Transmission Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_TransMap.png"
+                                        },
+                                        "RGBA Area Mask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_RGBAMask.tga"
+                                        },
+                                        "SSS Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_SSSMap.jpg"
+                                        },
+                                        "MicroNormal": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroN.png"
+                                        },
+                                        "MicroNormalMask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroNMask.jpg"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "_BaseColorMap Brightness": 0.0,
+                                        "_BaseColorMap Saturation": 0.0,
+                                        "AO Map Affect All Lights": 0.0,
+                                        "Flip MicroNormal Y": 1.0,
+                                        "MicroNormal Tiling": 42.0,
+                                        "MicroNormal Strength": 1.0,
+                                        "_Specular": 0.4000000059604645,
+                                        "Micro Roughness Scale": -0.05000000074505806,
+                                        "R Channel Roughness Scale": 0.0,
+                                        "G Channel Roughness Scale": 0.0,
+                                        "B Channel Roughness Scale": 0.0,
+                                        "A Channel Roughness Scale": 0.0,
+                                        "Unmasked Roughness Scale": 0.0,
+                                        "Edge Roughness Multiplier": 0.10000000149011612,
+                                        "R Channel Scatter Scale": 1.0,
+                                        "G Channel Scatter Scale": 1.0,
+                                        "B Channel Scatter Scale": 1.0,
+                                        "A Channel Scatter Scale": 1.0,
+                                        "Unmasked Scatter Scale": 1.0
+                                    }
+                                },
+                                "Subsurface Scatter": {
+                                    "Falloff": [
+                                        255.0,
+                                        94.3499984741211,
+                                        76.5
+                                    ],
+                                    "Radius": 2.0,
+                                    "Distribution": 0.4000000059604645,
+                                    "IOR": 3.0,
+                                    "DecayScale": 0.15000000596046449,
+                                    "Lerp": 0.8500000238418579
+                                }
+                            },
+                            "Ga_Nails": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    50.000003814697269,
+                                    50.000003814697269,
+                                    50.000003814697269
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Nails_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Nails_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Nails/Ga_Nails_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Nails/Ga_Nails_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Nails/Ga_Nails_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLSSS",
+                                    "Image": {
+                                        "Transmission Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_TransMap.png"
+                                        },
+                                        "RGBA Area Mask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_RGBAMask.tga"
+                                        },
+                                        "SSS Map": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_SSSMap.jpg"
+                                        },
+                                        "MicroNormal": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroN.png"
+                                        },
+                                        "MicroNormalMask": {
+                                            "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Skin_Head/Ga_Skin_Head_MicroNMask.jpg"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "_BaseColorMap Brightness": 0.0,
+                                        "_BaseColorMap Saturation": 0.0,
+                                        "AO Map Affect All Lights": 0.0,
+                                        "Flip MicroNormal Y": 1.0,
+                                        "MicroNormal Tiling": 42.0,
+                                        "MicroNormal Strength": 1.0,
+                                        "_Specular": 0.4000000059604645,
+                                        "Micro Roughness Scale": -0.05000000074505806,
+                                        "R Channel Roughness Scale": 0.0,
+                                        "G Channel Roughness Scale": 0.0,
+                                        "B Channel Roughness Scale": 0.0,
+                                        "A Channel Roughness Scale": 0.0,
+                                        "Unmasked Roughness Scale": 0.0,
+                                        "Edge Roughness Multiplier": 0.10000000149011612,
+                                        "R Channel Scatter Scale": 1.0,
+                                        "G Channel Scatter Scale": 1.0,
+                                        "B Channel Scatter Scale": 1.0,
+                                        "A Channel Scatter Scale": 1.0,
+                                        "Unmasked Scatter Scale": 1.0
+                                    }
+                                },
+                                "Subsurface Scatter": {
+                                    "Falloff": [
+                                        255.0,
+                                        94.3499984741211,
+                                        76.5
+                                    ],
+                                    "Radius": 1.5,
+                                    "Distribution": 0.4000000059604645,
+                                    "IOR": 3.0,
+                                    "DecayScale": 0.15000000596046449,
+                                    "Lerp": 0.8500000238418579
+                                }
+                            },
+                            "Ga_Eyelash": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    50.000003814697269,
+                                    50.000003814697269,
+                                    50.000003814697269
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Eyelash_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Eyelash_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Eyelash_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Eyelash/Ga_Eyelash_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Eyelash/Ga_Eyelash_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Body/Ga_Eyelash/Ga_Eyelash_HDRP.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "CC_Game_Tongue": {
+                        "Materials": {
+                            "Std_Tongue1": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    125.00000762939453,
+                                    125.00000762939453,
+                                    125.00000762939453
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Std_Tongue1_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Std_Tongue1_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Std_Tongue1_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Tongue/Std_Tongue1/Std_Tongue1_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Tongue/Std_Tongue1/Std_Tongue1_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Tongue/Std_Tongue1/Std_Tongue1_HDRP.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Canvas_shoes": {
+                        "Materials": {
+                            "Canvas_shoes": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    127.5,
+                                    127.5,
+                                    127.5
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Canvas_shoes_Diffuse.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Canvas_shoes_Normal.jpg",
+                                        "Strength": 79.99999237060547,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Canvas_shoes/Canvas_shoes/Canvas_shoes_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Canvas_shoes/Canvas_shoes/Canvas_shoes_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Canvas_shoes/Canvas_shoes/Canvas_shoes_HDRP.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Female_Brow": {
+                        "Materials": {
+                            "Female_Brow": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    150.0,
+                                    150.0,
+                                    150.0
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Female_Brow_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Female_Brow_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Female_Brow/Female_Brow/Female_Brow_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Female_Brow/Female_Brow/Female_Brow_MetallicAlpha.png"
+                                    }
+                                }
+                            },
+                            "Female_Brow_Base": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    150.0,
+                                    150.0,
+                                    150.0
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 0.8999999761581421,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Female_Brow_Base_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Female_Brow_Base_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Female_Brow/Female_Brow_Base/Female_Brow_Base_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Female_Brow/Female_Brow_Base/Female_Brow_Base_MetallicAlpha.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Basic_T_shirts": {
+                        "Materials": {
+                            "Basic_T_shirts": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    150.0,
+                                    150.0,
+                                    150.0
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Basic_T_shirts_Diffuse.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Glow": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Basic_T_shirts/Basic_T_shirts/Basic_T_shirts_Glow.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Basic_T_shirts_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Basic_T_shirts/Basic_T_shirts/Basic_T_shirts_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Basic_T_shirts/Basic_T_shirts/Basic_T_shirts_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Basic_T_shirts/Basic_T_shirts/Basic_T_shirts_HDRP.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Slim_fit_pants": {
+                        "Materials": {
+                            "Slim_fit_pants": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    150.0,
+                                    150.0,
+                                    150.0
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Slim_fit_pants_Diffuse.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Glow": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Slim_fit_pants/Slim_fit_pants/Slim_fit_pants_Glow.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Slim_fit_pants_Normal.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Slim_fit_pants/Slim_fit_pants/Slim_fit_pants_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Slim_fit_pants/Slim_fit_pants/Slim_fit_pants_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/Slim_fit_pants/Slim_fit_pants/Slim_fit_pants_HDRP.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "CC_Game_Eye": {
+                        "Materials": {
+                            "Ga_Eye": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": false,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Eye_Diffuse.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Eye_Normal.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Eye/Ga_Eye/Ga_Eye_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Eye/Ga_Eye/Ga_Eye_MetallicAlpha.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "CC_Game_Teeth": {
+                        "Materials": {
+                            "Ga_Teeth": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": false,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Teeth_Diffuse.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Normal": {
+                                        "Texture Path": "./strandmevrouw.fbm/Ga_Teeth_Normal.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Teeth/Ga_Teeth/Ga_Teeth_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Teeth/Ga_Teeth/Ga_Teeth_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/strandmevrouw/CC_Game_Teeth/Ga_Teeth/Ga_Teeth_HDRP.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Hair_Base002": {
+                        "Materials": {
+                            "Hair": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    149.99099731445313,
+                                    149.99099731445313,
+                                    149.99099731445313
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Blend": {
+                                        "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_blend_multiply.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Blend Mode": "Multiply"
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLHair",
+                                    "Image": {
+                                        "Hair Root Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_Hair Root Map.jpg"
+                                        },
+                                        "Hair ID Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_Hair ID Map.png"
+                                        },
+                                        "Hair Flow Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Hair/Hair_Hair Flow Map.png"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "TangentVectorColor": [
+                                            255.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "TangentMapFlipGreen": 1.0,
+                                        "AO Map Occlude All Lighting": 0.0,
+                                        "Diffuse Strength": 1.0,
+                                        "Hair Roughness Map Strength": 0.5239999890327454,
+                                        "Hair Specular Map Strength": 0.30000001192092898,
+                                        "Specular Strength": 0.800000011920929,
+                                        "Secondary Specular Strength": 1.0,
+                                        "Transmission Strength": 0.15000000596046449,
+                                        "No Back Face Triangles": 1.0,
+                                        "VertexGrayToColor": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "VertexColorStrength": 0.875,
+                                        "ActiveChangeHairColor": 1.0,
+                                        "BaseColorMapStrength": 1.0,
+                                        "padding c4z": 0.0,
+                                        "paddingHasMips": 0.0,
+                                        "RootColor": [
+                                            37.0,
+                                            18.0,
+                                            11.0
+                                        ],
+                                        "padding c5w": 0.0,
+                                        "TipColor": [
+                                            86.0,
+                                            48.0,
+                                            31.0
+                                        ],
+                                        "RootTipBlendMode": 0.0,
+                                        "UseRootTipColor": 1.0,
+                                        "RootColorStrength": 1.0,
+                                        "TipColorStrength": 1.0,
+                                        "InvertRootTip": 0.0,
+                                        "_1st Dye Color": [
+                                            182.0,
+                                            125.0,
+                                            79.0
+                                        ],
+                                        "_1st Dye Strength": 0.5429999828338623,
+                                        "_1st Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_1st BlendMode": 0.0,
+                                        "Mask 1st Dye by RootMap": 1.0,
+                                        "Invert 1st Dye RootMap Mask": 1.0,
+                                        "_1st Dye add Specular": 0.0,
+                                        "padding c10w": 0.0,
+                                        "_2nd Dye Color": [
+                                            255.0,
+                                            255.0,
+                                            255.0
+                                        ],
+                                        "_2nd Dye Strength": 0.0,
+                                        "_2nd Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_2nd BlendMode": 0.0,
+                                        "Mask 2nd Dye by RootMap": 0.0,
+                                        "Invert 2nd Dye RootMap Mask": 0.0,
+                                        "_2nd Dye add Specular": 0.0,
+                                        "padding c13w": 0.0,
+                                        "BlackColor Reflection Offset X": 0.0,
+                                        "BlackColor Reflection Offset Y": 0.0,
+                                        "BlackColor Reflection Offset Z": 0.0,
+                                        "padding c14w": 0.0,
+                                        "WhiteColor Reflection Offset X": 0.0,
+                                        "WhiteColor Reflection Offset Y": 0.0,
+                                        "WhiteColor Reflection Offset Z": 0.0,
+                                        "padding c15w": 0.0
+                                    }
+                                }
+                            },
+                            "Scalp": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    125.00000762939453,
+                                    125.00000762939453,
+                                    125.00000762939453
+                                ],
+                                "Specular Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Scalp_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Scalp_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Scalp/Scalp_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/Hair_Base002/Hair_Base002/Scalp/Scalp_MetallicAlpha.png"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Bun002": {
+                        "Materials": {
+                            "Hair_0": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    149.99099731445313,
+                                    149.99099731445313,
+                                    149.99099731445313
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_0_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_0_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Blend": {
+                                        "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_blend_multiply.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Blend Mode": "Multiply"
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLHair",
+                                    "Image": {
+                                        "Hair Root Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_Hair Root Map.jpg"
+                                        },
+                                        "Hair ID Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_Hair ID Map.png"
+                                        },
+                                        "Hair Flow Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Bun002/Bun002/Hair_0/Hair_0_Hair Flow Map.png"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "TangentVectorColor": [
+                                            255.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "TangentMapFlipGreen": 1.0,
+                                        "AO Map Occlude All Lighting": 0.0,
+                                        "Diffuse Strength": 1.0,
+                                        "Hair Roughness Map Strength": 0.5189999938011169,
+                                        "Hair Specular Map Strength": 0.1979999989271164,
+                                        "Specular Strength": 0.4740000069141388,
+                                        "Secondary Specular Strength": 0.7160000205039978,
+                                        "Transmission Strength": 0.10999999940395355,
+                                        "No Back Face Triangles": 1.0,
+                                        "VertexGrayToColor": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "VertexColorStrength": 0.8339999914169312,
+                                        "ActiveChangeHairColor": 1.0,
+                                        "BaseColorMapStrength": 1.0,
+                                        "padding c4z": 0.0,
+                                        "paddingHasMips": 0.0,
+                                        "RootColor": [
+                                            26.0,
+                                            12.0,
+                                            8.0
+                                        ],
+                                        "padding c5w": 0.0,
+                                        "TipColor": [
+                                            48.0,
+                                            26.0,
+                                            17.0
+                                        ],
+                                        "RootTipBlendMode": 0.0,
+                                        "UseRootTipColor": 1.0,
+                                        "RootColorStrength": 1.0,
+                                        "TipColorStrength": 1.0,
+                                        "InvertRootTip": 0.0,
+                                        "_1st Dye Color": [
+                                            182.0,
+                                            125.0,
+                                            79.0
+                                        ],
+                                        "_1st Dye Strength": 0.0,
+                                        "_1st Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_1st BlendMode": 0.0,
+                                        "Mask 1st Dye by RootMap": 1.0,
+                                        "Invert 1st Dye RootMap Mask": 1.0,
+                                        "_1st Dye add Specular": 0.0,
+                                        "padding c10w": 0.0,
+                                        "_2nd Dye Color": [
+                                            255.0,
+                                            255.0,
+                                            255.0
+                                        ],
+                                        "_2nd Dye Strength": 0.0,
+                                        "_2nd Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_2nd BlendMode": 0.0,
+                                        "Mask 2nd Dye by RootMap": 0.0,
+                                        "Invert 2nd Dye RootMap Mask": 0.0,
+                                        "_2nd Dye add Specular": 0.0,
+                                        "padding c13w": 0.0,
+                                        "BlackColor Reflection Offset X": 0.0,
+                                        "BlackColor Reflection Offset Y": 0.0,
+                                        "BlackColor Reflection Offset Z": 0.0,
+                                        "padding c14w": 0.0,
+                                        "WhiteColor Reflection Offset X": 0.0,
+                                        "WhiteColor Reflection Offset Y": 0.0,
+                                        "WhiteColor Reflection Offset Z": 0.0,
+                                        "padding c15w": 0.0
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Real_Hair002": {
+                        "Materials": {
+                            "Hair_1": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    149.99099731445313,
+                                    149.99099731445313,
+                                    149.99099731445313
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_1_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_1_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Blend": {
+                                        "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_blend_multiply.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Blend Mode": "Multiply"
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLHair",
+                                    "Image": {
+                                        "Hair Root Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_Hair Root Map.jpg"
+                                        },
+                                        "Hair ID Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_Hair ID Map.png"
+                                        },
+                                        "Hair Flow Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Real_Hair002/Real_Hair002/Hair_1/Hair_1_Hair Flow Map.png"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "TangentVectorColor": [
+                                            255.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "TangentMapFlipGreen": 1.0,
+                                        "AO Map Occlude All Lighting": 0.0,
+                                        "Diffuse Strength": 1.0,
+                                        "Hair Roughness Map Strength": 0.5239999890327454,
+                                        "Hair Specular Map Strength": 0.23600000143051148,
+                                        "Specular Strength": 0.800000011920929,
+                                        "Secondary Specular Strength": 1.0,
+                                        "Transmission Strength": 0.15000000596046449,
+                                        "No Back Face Triangles": 1.0,
+                                        "VertexGrayToColor": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "VertexColorStrength": 0.875,
+                                        "ActiveChangeHairColor": 1.0,
+                                        "BaseColorMapStrength": 1.0,
+                                        "padding c4z": 0.0,
+                                        "paddingHasMips": 0.0,
+                                        "RootColor": [
+                                            37.0,
+                                            18.0,
+                                            11.0
+                                        ],
+                                        "padding c5w": 0.0,
+                                        "TipColor": [
+                                            86.0,
+                                            48.0,
+                                            31.0
+                                        ],
+                                        "RootTipBlendMode": 0.0,
+                                        "UseRootTipColor": 1.0,
+                                        "RootColorStrength": 1.0,
+                                        "TipColorStrength": 1.0,
+                                        "InvertRootTip": 0.0,
+                                        "_1st Dye Color": [
+                                            182.0,
+                                            125.0,
+                                            79.0
+                                        ],
+                                        "_1st Dye Strength": 0.5429999828338623,
+                                        "_1st Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_1st BlendMode": 0.0,
+                                        "Mask 1st Dye by RootMap": 1.0,
+                                        "Invert 1st Dye RootMap Mask": 1.0,
+                                        "_1st Dye add Specular": 0.0,
+                                        "padding c10w": 0.0,
+                                        "_2nd Dye Color": [
+                                            255.0,
+                                            255.0,
+                                            255.0
+                                        ],
+                                        "_2nd Dye Strength": 0.0,
+                                        "_2nd Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_2nd BlendMode": 0.0,
+                                        "Mask 2nd Dye by RootMap": 0.0,
+                                        "Invert 2nd Dye RootMap Mask": 0.0,
+                                        "_2nd Dye add Specular": 0.0,
+                                        "padding c13w": 0.0,
+                                        "BlackColor Reflection Offset X": 0.0,
+                                        "BlackColor Reflection Offset Y": 0.0,
+                                        "BlackColor Reflection Offset Z": 0.0,
+                                        "padding c14w": 0.0,
+                                        "WhiteColor Reflection Offset X": 0.0,
+                                        "WhiteColor Reflection Offset Y": 0.0,
+                                        "WhiteColor Reflection Offset Z": 0.0,
+                                        "padding c15w": 0.0
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Bang002": {
+                        "Materials": {
+                            "Hair_2": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    125.00000762939453,
+                                    125.00000762939453,
+                                    125.00000762939453
+                                ],
+                                "Specular Color": [
+                                    229.5,
+                                    229.5,
+                                    229.5
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_2_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./strandmevrouw.fbm/Hair_2_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/strandmevrouw/Bang002/Bang002/Hair_2/Hair_2_ao.jpg",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/strandmevrouw/Bang002/Bang002/Hair_2/Hair_2_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/strandmevrouw/Bang002/Bang002/Hair_2/Hair_2_HDRP.png"
+                                    }
+                                },
+                                "Custom Shader": {
+                                    "Shader Name": "RLHair",
+                                    "Image": {
+                                        "Hair Root Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Bang002/Bang002/Hair_2/Hair_2_Hair Root Map.jpg"
+                                        },
+                                        "Hair ID Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Bang002/Bang002/Hair_2/Hair_2_Hair ID Map.png"
+                                        },
+                                        "Hair Flow Map": {
+                                            "Texture Path": "./textures/strandmevrouw/Bang002/Bang002/Hair_2/Hair_2_Hair Flow Map.png"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "TangentVectorColor": [
+                                            255.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "TangentMapFlipGreen": 1.0,
+                                        "AO Map Occlude All Lighting": 1.0,
+                                        "Diffuse Strength": 1.0,
+                                        "Hair Roughness Map Strength": 0.5239999890327454,
+                                        "Hair Specular Map Strength": 0.30000001192092898,
+                                        "Specular Strength": 0.800000011920929,
+                                        "Secondary Specular Strength": 1.0,
+                                        "Transmission Strength": 0.15000000596046449,
+                                        "No Back Face Triangles": 1.0,
+                                        "VertexGrayToColor": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "VertexColorStrength": 0.875,
+                                        "ActiveChangeHairColor": 1.0,
+                                        "BaseColorMapStrength": 1.0,
+                                        "padding c4z": 0.0,
+                                        "paddingHasMips": 0.0,
+                                        "RootColor": [
+                                            34.0,
+                                            17.0,
+                                            13.0
+                                        ],
+                                        "padding c5w": 0.0,
+                                        "TipColor": [
+                                            86.0,
+                                            48.0,
+                                            31.0
+                                        ],
+                                        "RootTipBlendMode": 0.0,
+                                        "UseRootTipColor": 1.0,
+                                        "RootColorStrength": 1.0,
+                                        "TipColorStrength": 1.0,
+                                        "InvertRootTip": 0.0,
+                                        "_1st Dye Color": [
+                                            182.0,
+                                            125.0,
+                                            79.0
+                                        ],
+                                        "_1st Dye Strength": 0.5429999828338623,
+                                        "_1st Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_1st BlendMode": 0.0,
+                                        "Mask 1st Dye by RootMap": 1.0,
+                                        "Invert 1st Dye RootMap Mask": 1.0,
+                                        "_1st Dye add Specular": 0.0,
+                                        "padding c10w": 0.0,
+                                        "_2nd Dye Color": [
+                                            255.0,
+                                            255.0,
+                                            255.0
+                                        ],
+                                        "_2nd Dye Strength": 0.0,
+                                        "_2nd Dye Distribution from Grayscale": [
+                                            25.5,
+                                            51.0,
+                                            76.5
+                                        ],
+                                        "_2nd BlendMode": 0.0,
+                                        "Mask 2nd Dye by RootMap": 0.0,
+                                        "Invert 2nd Dye RootMap Mask": 0.0,
+                                        "_2nd Dye add Specular": 0.0,
+                                        "padding c13w": 0.0,
+                                        "BlackColor Reflection Offset X": 0.0,
+                                        "BlackColor Reflection Offset Y": 0.0,
+                                        "BlackColor Reflection Offset Z": 0.0,
+                                        "padding c14w": 0.0,
+                                        "WhiteColor Reflection Offset X": 0.0,
+                                        "WhiteColor Reflection Offset Y": 0.0,
+                                        "WhiteColor Reflection Offset Z": 0.0,
+                                        "padding c15w": 0.0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
