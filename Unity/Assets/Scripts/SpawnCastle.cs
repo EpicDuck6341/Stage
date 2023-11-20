@@ -9,8 +9,7 @@ public class SpawnCastle : MonoBehaviour
 {
     public GameObject[] castlePrefabs;
     public Material castleMaterial;
-    public Material floorMaterial;
-    public Material green;
+    public Material white;
     private Vector3 spawnPosition;
     private GrabObject GO;
     private List<GameObject> castleParts = new();
@@ -18,6 +17,7 @@ public class SpawnCastle : MonoBehaviour
     [HideInInspector] public bool towerBuilt;
     [HideInInspector] public bool bottomBuilt;
     [HideInInspector] public bool[] spawn = { false, false, false, false };
+    private bool[] castlePartsProcessed = { false, false, false, false };
 
 
     private void Start()
@@ -27,15 +27,15 @@ public class SpawnCastle : MonoBehaviour
         spawnPosition = new Vector3(730, 0.22f, 798);
         Vector3 scale = new Vector3(10, 10, 1);
         castleParts.Add(SpawnAndConfigureObject(castlePrefabs[7], spawnPosition, Quaternion.Euler(-90, 0, 0), scale,
-            floorMaterial));
-        castleParts.Add( SpawnAndConfigureObject(castlePrefabs[6], spawnPosition, Quaternion.Euler(-90, 0, 0), scale,
-            floorMaterial));
+            white));
+        castleParts.Add(SpawnAndConfigureObject(castlePrefabs[6], spawnPosition, Quaternion.Euler(-90, 0, 0), scale,
+            white));
 
         spawnPosition = new Vector3(730, 0.22023f, 798);
         castleParts.Add(SpawnAndConfigureObject(castlePrefabs[5], spawnPosition, Quaternion.Euler(90, 0, 180), scale,
-            floorMaterial));
+            white));
         castleParts.Add(SpawnAndConfigureObject(castlePrefabs[8], spawnPosition, Quaternion.Euler(90, 0, 180), scale,
-            floorMaterial));
+            white));
     }
 
     //Used in the GrabObject class
@@ -66,7 +66,7 @@ public class SpawnCastle : MonoBehaviour
         else if (castlePart == "FloorFrontRight(Clone)")
         {
             spawnPosition = new Vector3(730, 0.22f, 798);
-            castleParts.Add( SpawnAndConfigureObject(castlePrefabs[1], spawnPosition, Quaternion.Euler(-90, 0, 0),
+            castleParts.Add(SpawnAndConfigureObject(castlePrefabs[1], spawnPosition, Quaternion.Euler(-90, 0, 0),
                 scale,
                 castleMaterial));
             spawn[3] = false;
@@ -97,7 +97,8 @@ public class SpawnCastle : MonoBehaviour
                 scale,
                 castleMaterial));
             Destroy(castleParts[8]);
-            setMaterial(castleParts[9], "Tower", green);
+            setMaterial(castleParts[9], "Tower", white);
+            castleParts[9].AddComponent<HighlightObject>();
         }
         else if (castlePart == "tower1(Clone)")
         {
@@ -105,7 +106,9 @@ public class SpawnCastle : MonoBehaviour
             castleParts.Add(SpawnAndConfigureObject(castlePrefabs[11], spawnPosition, Quaternion.Euler(-90, 0, 0),
                 scale,
                 castleMaterial));
-            setMaterial(castleParts[10], "Tower", green);
+            setMaterial(castleParts[10], "Tower", white);
+            castleParts[10].AddComponent<HighlightObject>();
+            Destroy(castleParts[9].GetComponent<HighlightObject>());
             setMaterial(castleParts[9], "Untagged", castleMaterial);
         }
         else if (castlePart == "tower2(Clone)")
@@ -114,7 +117,9 @@ public class SpawnCastle : MonoBehaviour
             castleParts.Add(SpawnAndConfigureObject(castlePrefabs[12], spawnPosition, Quaternion.Euler(-90, 0, 0),
                 scale,
                 castleMaterial));
-            setMaterial(castleParts[11], "Tower", green);
+            setMaterial(castleParts[11], "Tower", white);
+            castleParts[11].AddComponent<HighlightObject>();
+            Destroy(castleParts[10].GetComponent<HighlightObject>());
             setMaterial(castleParts[10], "Untagged", castleMaterial);
         }
         else if (castlePart == "tower3(Clone)")
@@ -123,6 +128,7 @@ public class SpawnCastle : MonoBehaviour
             castleParts.Add(SpawnAndConfigureObject(castlePrefabs[13], spawnPosition, Quaternion.Euler(-90, 0, 0),
                 scale,
                 castleMaterial));
+            Destroy(castleParts[11].GetComponent<HighlightObject>());
             setMaterial(castleParts[11], "Untagged", castleMaterial);
             towerBuilt = true;
         }
@@ -181,7 +187,7 @@ public class SpawnCastle : MonoBehaviour
     {
         if (!replaced)
         {
-            if (bottomBuilt)
+            if (bottomBuilt && !replaced)
             {
                 //Replace all the loose castle parts with a single pre-built castle prefab
                 spawnPosition = new Vector3(730, 0.221f, 798);
@@ -191,8 +197,9 @@ public class SpawnCastle : MonoBehaviour
                 spawnPosition = new Vector3(730, 0.338f, 798);
                 castleParts.Add(SpawnAndConfigureObject(castlePrefabs[9], spawnPosition, Quaternion.Euler(90, 0, 0),
                     new Vector3(17, 17, 17),
-                    floorMaterial));
-                setMaterial(castleParts[8], "Tower", green);
+                    white));
+                setMaterial(castleParts[8], "Tower", white);
+                castleParts[8].AddComponent<HighlightObject>();
                 Destroy(castleParts[5]);
                 Destroy(castleParts[7]);
                 Destroy(castleParts[4]);
@@ -203,22 +210,30 @@ public class SpawnCastle : MonoBehaviour
 
         if (GO.heldObj != null)
         {
-            //Turn the color of the floor parts green whenever the matching castle part has spawned
-            if (spawn[0])
+// Turn the color of the floor parts green whenever the matching castle part has spawned
+            if (spawn[0] && !castlePartsProcessed[1])
             {
-                setMaterial(castleParts[1], "On", green);
+                castleParts[1].tag = "On";
+                castleParts[1].AddComponent<HighlightObject>();
+                castlePartsProcessed[1] = true;
             }
-            else if (spawn[1])
+            else if (spawn[1] && !castlePartsProcessed[3])
             {
-                setMaterial(castleParts[3], "On", green);
+                castleParts[3].tag = "On";
+                castleParts[3].AddComponent<HighlightObject>();
+                castlePartsProcessed[3] = true;
             }
-            else if (spawn[2])
+            else if (spawn[2] && !castlePartsProcessed[0])
             {
-                setMaterial(castleParts[0], "On", green);
+                castleParts[0].tag = "On";
+                castleParts[0].AddComponent<HighlightObject>();
+                castlePartsProcessed[0] = true;
             }
-            else if (spawn[3])
+            else if (spawn[3] && !castlePartsProcessed[2])
             {
-                setMaterial(castleParts[2], "On", green);
+                castleParts[2].tag = "On";
+                castleParts[2].AddComponent<HighlightObject>();
+                castlePartsProcessed[2] = true;
             }
         }
     }

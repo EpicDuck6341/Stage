@@ -11,7 +11,6 @@ public class BlackScreen : MonoBehaviour
     public GameObject canvas;
     public GameObject camera;
     public GameObject reticle;
-    public GameObject bucket;
     private Image imageComponent;
     
 

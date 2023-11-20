@@ -24,6 +24,8 @@ public class GrabObject : MonoBehaviour
     private SpawnCastle SC;
     private BlackScreen BS;
     private PlaceShells PS;
+    private ObjectNoises ObjN;
+    private BucketUI BUI;
     public GameObject sand;
     private bool shellsPickedUp;
     private bool playerMoved;
@@ -39,6 +41,10 @@ public class GrabObject : MonoBehaviour
     private Vector3 oScale;
     private Quaternion oRotation;
     private bool bucketFull;
+    //The amount of shells and sand the buckets holds
+    //Mainly used in the UI element that indicates the bucket fill level
+    [HideInInspector] public int sandPieces = 4;
+    [HideInInspector] public int shellPieces = 6;
 
 
     private void Start()
@@ -49,6 +55,8 @@ public class GrabObject : MonoBehaviour
         SC = GameObject.Find("Bucket").GetComponent<SpawnCastle>();
         BS = GameObject.Find("CountdownManager").GetComponent<BlackScreen>();
         PS = GameObject.Find("FirstPersonController").GetComponent<PlaceShells>();
+        ObjN = GameObject.Find("ObjectNoise").GetComponent<ObjectNoises>();
+        BUI = GameObject.Find("BucketLevel").GetComponent<BucketUI>();
     }
 
     private void Update()
@@ -68,6 +76,8 @@ public class GrabObject : MonoBehaviour
                         //Check for specific tag to see if it is an object that should be picked up
                         if (hit.collider.gameObject.tag == "PickUp")
                         {
+                            ObjN.playAudio(4);
+                            
                             PickupObject(hit.transform.gameObject);
                         }
                     }
@@ -86,7 +96,7 @@ public class GrabObject : MonoBehaviour
                 }
                 //Only when the bucket isn't filled with sand and the castle hasn't been built yet
                 //Check for the tower, because it's the last part that will be built
-                else if (BD.amount <= 3 && !SC.towerBuilt)
+                else if (BD.amount < sandPieces && !SC.towerBuilt)
                 {
                     ShovelSand(); //Used for picking up sand
                 }
@@ -147,6 +157,7 @@ public class GrabObject : MonoBehaviour
 
                 cubeRigidbody.isKinematic = false; // Enable the Rigidbody to allow the cube to fall
                 cubeRigidbody.useGravity = true; // Enable gravity for the cube to fall down
+                ObjN.playAudio(2);
                 shovelEmpty = true;
             }
         }
@@ -160,6 +171,7 @@ public class GrabObject : MonoBehaviour
         canPickup = false;
         Vector3 orgPos = obj.transform.position;
         Vector3 targetPos = hit;
+        
 
         // Move forward
         float elapsedTime = 0;
@@ -171,9 +183,9 @@ public class GrabObject : MonoBehaviour
         }
 
         heldObj.layer = LayerMask.NameToLayer("Default");
+        ObjN.playAudio(0);
 
-
-        // Wait for 1 second
+        // Wait for 0.6 second
         yield return new WaitForSeconds(0.6f);
         //Create a sand object at the tip of the shovel
         GameObject instantiatedPrefab = Instantiate(sand);
@@ -190,6 +202,7 @@ public class GrabObject : MonoBehaviour
         instantiatedPrefab.tag = "Sand"; // Set the tag to "Sand"
 
 
+        ObjN.playAudio(1);
         // Move back
         elapsedTime = 0;
         while (elapsedTime < duration / 2)
@@ -238,16 +251,15 @@ public class GrabObject : MonoBehaviour
             {
                 //Spawn the castle part corresponding to the name of the object with the on tag
                 //Defined in another class
+                ObjN.playAudio(3);
                 SC.spawnCastlePart(hit.collider.gameObject.name);
                 Destroy(hit.collider.gameObject);
                 //Lower the level of sand in the bucket
                 foreach (Transform child in heldObj.transform)
                 {
-                    Vector3 newPos =
-                        new Vector3(0, 0,
-                            child.gameObject.transform.localPosition.z - 0.2f); // Adjust the local position here
-                    child.gameObject.transform.localPosition = newPos;
+                    StartCoroutine(BD.AdjustHeight(child.gameObject, -0.2f));
                 }
+                BUI.decreaseFill(sandPieces);
 
                 //If the bottom part has been fully built return the bucket to its original position and handle variables that indicate the current state
                 if (SC.bottomBuilt)
@@ -272,15 +284,14 @@ public class GrabObject : MonoBehaviour
             {
                 //Spawn the castle part corresponding to the name of the object with the on tag
                 //Defined in another class
+                ObjN.playAudio(3);
                 SC.spawnTowerPart(hit.collider.gameObject.name);
                 //Lower the level of sand in the bucket
                 foreach (Transform child in heldObj.transform)
                 {
-                    Vector3 newPos =
-                        new Vector3(0, 0,
-                            child.gameObject.transform.localPosition.z - 0.2f); // Adjust the local position here
-                    child.gameObject.transform.localPosition = newPos;
+                    StartCoroutine(BD.AdjustHeight(child.gameObject, -0.2f));
                 }
+                BUI.decreaseFill(sandPieces);
 
                 //If the tower part has been fully built return the bucket to its original position and handle variables that indicate the current state
                 if (SC.towerBuilt)
@@ -323,6 +334,7 @@ public class GrabObject : MonoBehaviour
             //Check if the held shell has the same tag as the transparent hit shell
             if (hit.collider.gameObject.tag == heldObj.gameObject.tag)
             {
+                ObjN.playAudio(3);
                 //Replace the hit shell with the held shell
                 heldObj.layer = LayerMask.NameToLayer("Default");
                 heldObj.GetComponent<MeshCollider>().enabled = false;
@@ -362,15 +374,12 @@ public class GrabObject : MonoBehaviour
                     Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
                                           new Vector3(0, 0.15f, 0);
                     heldObj.transform.position = newPosition;
+                    BUI.decreaseFill(shellPieces);
                     if (BD.amount > 0)
                     {
                         foreach (Transform child in hit.collider.gameObject.transform)
                         {
-                            Vector3 newPos =
-                                new Vector3(0, 0,
-                                    child.gameObject.transform.localPosition.z -
-                                    0.1f); // Adjust the local position here
-                            child.gameObject.transform.localPosition = newPos;
+                            StartCoroutine(BD.AdjustHeight(child.gameObject, -0.1f));
                         }
                     }
                 }
@@ -402,9 +411,11 @@ public class GrabObject : MonoBehaviour
                         heldObj.transform.position = newPosition;
                         Vector3 newRotation = new Vector3(-70, 0, 0);
                         heldObj.transform.localRotation = Quaternion.Euler(newRotation);
+                        Destroy(heldObj.GetComponent<HighlightObject>());
+                        heldObj.GetComponent<Renderer>().material.color = Color.white;
                     }
                     //Can only grab the bucket to build the sand castle when it's full and if the castle isn't built
-                    else if (heldObj.gameObject.name == "Bucket" && BD.amount > 3 && !SC.towerBuilt)
+                    else if (heldObj.gameObject.name == "Bucket" && BD.amount == sandPieces && !SC.towerBuilt)
                     {
                         SC.spawn[0] = true;
                         Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
@@ -427,7 +438,7 @@ public class GrabObject : MonoBehaviour
                         //Fade to black and transport the camera to the water
                         StartCoroutine(BS.FadeToBlack(0.5f, new Vector3(730, -0.3f, 806)));
                         playerMoved = true;
-                        oPos = new Vector3(730, 0.079f, 804.563f);
+                        oPos = new Vector3(730, 0.086f, 804.563f);
                     }
                     //Used for transporting the player back when the shells have been picked up
                     else if (heldObj.gameObject.name == "Bucket" && BD.amount == 6 && SC.towerBuilt &&

@@ -17,12 +17,14 @@ public class BucketDetect : MonoBehaviour
     private PlaceShells PS;
     private GrabObject GO;
     private ObjectNaming ON;
+    private BucketUI BUI;
 
     private void Start()
     {
         PS = GameObject.Find("FirstPersonController").GetComponent<PlaceShells>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
         ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
+        BUI = GameObject.Find("BucketLevel").GetComponent<BucketUI>();
     }
 
     void OnTriggerEnter(Collider collision)
@@ -33,6 +35,7 @@ public class BucketDetect : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 amount++;
+                BUI.increaseFill(GO.sandPieces);
                 if (!spawned)
                 {
                     //Sand prefab used to show the level of how far the bucket has been filled
@@ -40,7 +43,7 @@ public class BucketDetect : MonoBehaviour
                     instantiatedPrefab.transform.SetParent(bucket.transform);
                     instantiatedPrefab.GetComponent<MeshCollider>().enabled = false;
                     instantiatedPrefab.GetComponent<BoxCollider>().enabled = false;
-                    Vector3 newScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    Vector3 newScale = new Vector3(0.095f, 0.095f, 0.095f);
                     instantiatedPrefab.transform.localScale = newScale;
                     Vector3 newPos = new Vector3(0, 0, 0.1f); // Adjust the local position here
                     instantiatedPrefab.transform.localPosition = newPos;
@@ -51,13 +54,10 @@ public class BucketDetect : MonoBehaviour
                 else if (spawned)
                 {
                     //Increase the prefabs height
-                    Vector3 newPos = new Vector3(instantiatedPrefab.transform.localPosition.x,
-                        instantiatedPrefab.transform.localPosition.y,
-                        instantiatedPrefab.transform.localPosition.z + 0.2f); // Adjust the local position here
-                    instantiatedPrefab.transform.localPosition = newPos;
+                    StartCoroutine(AdjustHeight(instantiatedPrefab, 0.2f));
                 }
 
-                if (amount > 3)
+                if (amount == GO.sandPieces)
                 {
                     //Destroy all sand objects that are laying around whenever the bucket is filled
                     GameObject[] cubes = GameObject.FindGameObjectsWithTag("Sand");
@@ -71,6 +71,7 @@ public class BucketDetect : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 amount++;
+                BUI.increaseFill(GO.shellPieces);
                 if (!spawned)
                 {
                     //Shell prefab used to show the level of how far the bucket has been filled
@@ -79,7 +80,7 @@ public class BucketDetect : MonoBehaviour
                     instantiatedPrefab.transform.SetParent(bucket.transform);
                     instantiatedPrefab.GetComponent<MeshCollider>().enabled = false;
                     instantiatedPrefab.GetComponent<BoxCollider>().enabled = false;
-                    Vector3 newScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    Vector3 newScale = new Vector3(0.095f, 0.095f, 0.095f);
                     instantiatedPrefab.transform.localScale = newScale;
                     Vector3 newPos = new Vector3(0, 0, 0.1f); // Adjust the local position here
                     instantiatedPrefab.transform.localPosition = newPos;
@@ -90,14 +91,47 @@ public class BucketDetect : MonoBehaviour
                 else if (spawned)
                 {
                     //Increase height
-                    Vector3 newPos = new Vector3(instantiatedPrefab.transform.localPosition.x,
-                        instantiatedPrefab.transform.localPosition.y,
-                        instantiatedPrefab.transform.localPosition.z + 0.12f); // Adjust the local position here
-                    instantiatedPrefab.transform.localPosition = newPos;
+                    StartCoroutine(AdjustHeight(instantiatedPrefab, 0.12f));
                 }
             }
         }
     }
+
+    
+    //Used to raise or lower the prefab used to indicate the fill level of the bucket
+    public IEnumerator AdjustHeight(GameObject obj, float targetLevel)
+    {
+        if (obj == null)
+        {
+            // Object is already destroyed, exit the coroutine
+            yield break;
+        }
+
+        float elapsedTime = 0f;
+        float totalTime = 0.5f;
+        float increment = targetLevel / totalTime;
+
+        while (elapsedTime < totalTime)
+        {
+            if (obj == null)
+            {
+                // Object was destroyed mid-use, exit the coroutine
+                yield break;
+            }
+
+            elapsedTime += Time.deltaTime;
+            obj.transform.localPosition = new Vector3(
+                obj.transform.localPosition.x,
+                obj.transform.localPosition.y,
+                obj.transform.localPosition.z + increment * Time.deltaTime
+            );
+            yield return null;
+        }
+    }
+
+
+
+
 
     private void Update()
     {

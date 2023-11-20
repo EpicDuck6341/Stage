@@ -13,8 +13,7 @@ public class CountdownManager : MonoBehaviour
     private FirstPersonController FPC;
     private GrabObject GO;
     [HideInInspector] public bool timerActive;
-
-    private AudioPlayer AP;
+    
     private AudioSource aud;
     private ImageChanger IC;
 
@@ -23,7 +22,6 @@ public class CountdownManager : MonoBehaviour
     {
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
-        AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
         IC = GameObject.Find("Image").GetComponent<ImageChanger>();
         aud = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         timer.SetActive(false);
@@ -46,7 +44,6 @@ public class CountdownManager : MonoBehaviour
         isStarted = false;
         timer.SetActive(false);
         timerActive = false;
-        AP.questionAsked = false;
         IC.setImage(IC.sprite[1]);
     }
     
