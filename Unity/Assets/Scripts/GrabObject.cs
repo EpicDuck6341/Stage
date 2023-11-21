@@ -30,7 +30,7 @@ public class GrabObject : MonoBehaviour
     private bool shellsPickedUp;
     private bool playerMoved;
 
-    public bool canPickup = true;
+    [HideInInspector] public bool canPickup = true;
 
 
     private Coroutine distanceCheckCoroutine; // Added to store the coroutine
@@ -40,7 +40,9 @@ public class GrabObject : MonoBehaviour
     private Vector3 oPos;
     private Vector3 oScale;
     private Quaternion oRotation;
+
     private bool bucketFull;
+
     //The amount of shells and sand the buckets holds
     //Mainly used in the UI element that indicates the bucket fill level
     [HideInInspector] public int sandPieces = 4;
@@ -77,7 +79,7 @@ public class GrabObject : MonoBehaviour
                         if (hit.collider.gameObject.tag == "PickUp")
                         {
                             ObjN.playAudio(4);
-                            
+
                             PickupObject(hit.transform.gameObject);
                         }
                     }
@@ -171,7 +173,7 @@ public class GrabObject : MonoBehaviour
         canPickup = false;
         Vector3 orgPos = obj.transform.position;
         Vector3 targetPos = hit;
-        
+
 
         // Move forward
         float elapsedTime = 0;
@@ -259,6 +261,7 @@ public class GrabObject : MonoBehaviour
                 {
                     StartCoroutine(BD.AdjustHeight(child.gameObject, -0.2f));
                 }
+
                 BUI.decreaseFill(sandPieces);
 
                 //If the bottom part has been fully built return the bucket to its original position and handle variables that indicate the current state
@@ -291,6 +294,7 @@ public class GrabObject : MonoBehaviour
                 {
                     StartCoroutine(BD.AdjustHeight(child.gameObject, -0.2f));
                 }
+
                 BUI.decreaseFill(sandPieces);
 
                 //If the tower part has been fully built return the bucket to its original position and handle variables that indicate the current state
