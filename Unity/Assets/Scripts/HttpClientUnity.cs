@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -9,16 +11,22 @@ using Object = System.Object;
 public class HttpClientUnity : MonoBehaviour
 {
     private readonly HttpClient client = new HttpClient();
-    private string serverUrl = "http://127.0.0.1:5000"; 
+    private string serverUrl = "http://127.0.0.1:5000";
     private RecordAudio RA;
     private ObjectNaming ON;
     private ImageChanger IC;
+    private NPCcontroller NPC;
+    private AudioPlayer AP;
+    private CountdownManager CM;
 
     private void Start()
     {
         RA = GameObject.Find("AudioManager").GetComponent<RecordAudio>();
         ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
         IC = GameObject.Find("Image").GetComponent<ImageChanger>();
+        NPC = GameObject.Find("NPC").GetComponent<NPCcontroller>();
+        AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
+        CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
     }
 
 
@@ -26,7 +34,7 @@ public class HttpClientUnity : MonoBehaviour
     {
         try
         {
-            var content = new MultipartFormDataContent();
+            MultipartFormDataContent content = new MultipartFormDataContent();
             string fileName = "givenAnswer";
             if (RA.count > 0)
             {
@@ -37,23 +45,49 @@ public class HttpClientUnity : MonoBehaviour
             string audioFilePath = Path.Combine(Application.dataPath, "Audio/Recordings/" + fileName);
             byte[] audioBytes = File.ReadAllBytes(audioFilePath);
 
+
             // Create a ByteArrayContent with the audio data
             ByteArrayContent audioContent = new ByteArrayContent(audioBytes);
             content.Add(audioContent, "audio", fileName);
 
-            // Send the audio as a POST request
-            HttpResponseMessage response = await client.PostAsync($"http://127.0.0.1:5000", content);
+            // Add the objectName as StringContent
+            string objectName = ON.coordNames[ON.index]; // Replace with the actual objectName
+            StringContent objectNameContent = new StringContent(objectName);
+            content.Add(objectNameContent, "objectName");
+
+            // Send the audio and objectName as a POST request
+            HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000", content);
             response.EnsureSuccessStatusCode();
 
             string responseBody = await response.Content.ReadAsStringAsync();
-            
+
             Debug.Log(responseBody);
-            // Start the next question for assignment 3
-            IC.setImage(IC.sprite[2]);
-            Invoke("invoker",4);
+
+            if (responseBody == "\"Correct\"")
+            {
+                // Start the next question for assignment 3
+                //Play audio here for correct answer
+                IC.setImage(IC.sprite[2]);
+                ON.index++;
+                Invoke("invoker", 4);
+            }
+            else if (responseBody == "\"Incorrect\"")
+            {
+                //Play audio here for incorrect answer
+                ON.index++;
+                IC.setImage(IC.sprite[2]);
+                Invoke("invoker", 4);
+            }
+            else if (responseBody == "\"Repeat\"")
+            {
+                //Play audio to repeat answer
+                //Restart the question
+                StartCoroutine(PlayAudio());
+            }
         }
         catch (HttpRequestException e)
         {
+            ON.index++;
             IC.clearImage();
             ON.answerGraded = true;
             Debug.LogError("Exception Caught!");
@@ -66,6 +100,19 @@ public class HttpClientUnity : MonoBehaviour
         IC.clearImage();
         ON.answerGraded = true;
     }
+
+    private IEnumerator PlayAudio()
+    {
+        IC.clearImage();
+        //Nog een extra gedeelte waar wordt gevraagd om het te herhalen
+        AP.playAudio(AP.clips[ON.index]);
+
+        NPC.anim.SetBool("talk", true);
+
+        yield return new WaitWhile(() => AP.auds.isPlaying);
+
+        NPC.anim.SetBool("talk", false);
+
+        CM.StartTimer(5);
+    }
 }
-
-

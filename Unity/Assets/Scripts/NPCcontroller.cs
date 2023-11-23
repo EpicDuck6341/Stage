@@ -8,19 +8,26 @@ public class NPCcontroller : MonoBehaviour
 {
     public GameObject player;
     public Animator anim;
+    public GameObject neck;
     private float minDistance;
     private CountdownManager CM;
+    private AudioPlayer AP;
 
+    private ObjectNaming ON;
     // Start is called before the first frame update
     void Start()
     {
+        
         CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
+        AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
+        ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
         RaycastHit hit;
         if (Physics.Raycast(gameObject.transform.position + new Vector3(0, 0.5f, 0), -gameObject.transform.up, out hit,
                 50))
         {
             minDistance = hit.distance;
         }
+        
     }
 
 
@@ -45,7 +52,7 @@ public class NPCcontroller : MonoBehaviour
             // Adjust player camera to follow the NPC
             Vector3 playerLookDirection = (gameObject.transform.position - player.transform.position).normalized;
             Quaternion playerRotation =
-                Quaternion.LookRotation(new Vector3(playerLookDirection.x, 0, playerLookDirection.z));
+                Quaternion.LookRotation(new Vector3(playerLookDirection.x, playerLookDirection.y, playerLookDirection.z));
             player.transform.rotation = Quaternion.Lerp(player.transform.rotation, playerRotation, t);
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.position + new Vector3(0, 0.5f, 0), -gameObject.transform.up,
@@ -91,6 +98,13 @@ public class NPCcontroller : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        AP.playAudio(AP.clips[ON.index]);
+        anim.SetBool("talk", true);
+        yield return new WaitWhile(() => AP.auds.isPlaying);
+        anim.SetBool("talk", false);
+        
+        
+        
 
         
         CM.StartTimer(5);

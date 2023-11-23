@@ -14,8 +14,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+repeat = False;
+
 # Define the upload folder for audio files
-UPLOAD_FOLDER = "/uploaded"
+UPLOAD_FOLDER = "/UploadFolder"
 Path(UPLOAD_FOLDER).mkdir(parents=True, exist_ok=True)
 
 
@@ -37,12 +39,14 @@ def load_audio(file_path):
 # Modify the route to accept POST requests for audio upload
 @app.route('/', methods=['POST'])
 def upload_audio():
+    global repeat
     try:
-        # Check if the 'file' field is in the request
-        if 'audio' not in request.files:
-            return "No file part", 400
+        # Check if the 'audio' and 'objectName' fields are in the request
+        if 'audio' not in request.files or 'objectName' not in request.form:
+            return "Missing file part or objectName", 400
 
         file = request.files['audio']
+        object_name = request.form['objectName']
 
         # Check if the file has a valid filename
         if file.filename == '':
@@ -59,25 +63,43 @@ def upload_audio():
             result = whisper.decode(model, mel, options)
 
             tokenizer = get_tokenizer(multilingual=model.is_multilingual, language="dutch", task=options.task)
-            conf_array = calculate_confidence(result.tokens, result.token_probs,
-                                              tokenizer)  # Print the text with colors, and return the confidence of each word.
+            conf_array = calculate_confidence(result.tokens, result.token_probs, tokenizer)
 
             similar_words = []
-            # Find similar words for each target word
-            target_words = ["Surfboard", "Zwemband", "Emmer"]
-            for target_word in target_words:
-                similar_word, _, similarity, confidence = find_most_similar_word(target_word, result.text, conf_array)
-                similar_words.append({
-                    'Target Word': target_word,
-                    'Similar Word': similar_word,
-                    'similarity': similarity,
-                    'confidence': confidence
-                })
 
-            return json.dumps(similar_words)
+            # Find similar words for each target word
+            target_word = object_name
+            similar_word, _, similarity, confidence = find_most_similar_word(target_word, result.text, conf_array)
+            similar_words.append({
+                'Target Word': target_word,
+                'Similar Word': similar_word,
+                'similarity': similarity,
+                'confidence': confidence
+            })
+
+            if similar_words[0]['confidence'] >= 0.6:
+                if similar_words[0]['similarity'] == 100:
+                    repeat = False
+                    data = "Correct"
+                    return json.dumps(data)
+                else:
+                    repeat = False
+                    data = "Incorrect"
+                    return json.dumps(data)
+            else:
+                if not repeat:
+                    repeat = True
+                    data = "Repeat"
+                    return json.dumps(data)
+                else:
+                    repeat = False
+                    data = "Incorrect"
+                    return json.dumps(data)
 
     except Exception as e:
-        return str(e), 500
+        repeat = True
+        data = "Repeat"
+        return json.dumps(data)
 
 
 def calculate_confidence(tokens: List[int], token_probs: List[float], tokenizer_temp):
@@ -121,7 +143,7 @@ def find_most_similar_word(target_word, result_text, conf_array):
     highest_sim = 0
     for index, word in enumerate(result_array):
         similarity = fuzzywuzzy.fuzz.token_set_ratio(target_word,
-                                           word)  # Using Levenshtein Distance to calculate the similarity between two sequences
+                                                     word)  # Using Levenshtein Distance to calculate the similarity between two sequences
         if similarity > highest_sim:  # Search for the highest similarity in the array
             highest_sim = similarity
             sim_index = index
@@ -129,8 +151,6 @@ def find_most_similar_word(target_word, result_text, conf_array):
             if similarity == highest_sim and conf_array[sim_index] < conf_array[index]:
                 highest_sim = similarity
                 sim_index = index
-
-
 
     print(
         f"Similar Word: {result_array[sim_index]}, Target Word: {target_word}, Index: {sim_index}, Similarity: {highest_sim}, Confidence: {conf_array[sim_index]}")

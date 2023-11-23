@@ -28,7 +28,6 @@ public class RecordAudio : MonoBehaviour
             recBusy = true;
             // Choose a microphone device (you can enumerate available devices)
             microphoneDevice = Microphone.devices[0]; // Change index as needed
-
             // Start recording with a specified device, length, and frequency
             recordedAudio = Microphone.Start(microphoneDevice, false, duration, 44100);
 
