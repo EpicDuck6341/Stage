@@ -29,6 +29,7 @@ public class GrabObject : MonoBehaviour
     public GameObject sand;
     private bool shellsPickedUp;
     private bool playerMoved;
+    [HideInInspector] public bool assignmentFour = true;
 
     [HideInInspector] public bool canPickup = true;
 
@@ -84,28 +85,31 @@ public class GrabObject : MonoBehaviour
                         }
                     }
                 }
-                //Only whenever the shells held have the tag's 
-                else if (heldObj.gameObject.tag == "Shell1" ||
-                         heldObj.gameObject.tag == "Shell2" ||
-                         heldObj.gameObject.tag == "Shell3")
+                else if (!assignmentFour)
                 {
-                    placeShell();
-                }
-                //Because the shells interact differently they have a separate drop function
-                else if (heldObj.gameObject.name == "Shell")
-                {
-                    dropShell();
-                }
-                //Only when the bucket isn't filled with sand and the castle hasn't been built yet
-                //Check for the tower, because it's the last part that will be built
-                else if (BD.amount < sandPieces && !SC.towerBuilt)
-                {
-                    ShovelSand(); //Used for picking up sand
-                }
-                //Only when the bucket it filled with sand, so the amount is equal to 4.
-                else if (bucketFull && !SC.towerBuilt)
-                {
-                    UseBucket();
+                    //Only whenever the shells held have the tag's 
+                    if (heldObj.gameObject.tag == "Shell1" ||
+                        heldObj.gameObject.tag == "Shell2" ||
+                        heldObj.gameObject.tag == "Shell3")
+                    {
+                        placeShell();
+                    }
+                    //Because the shells interact differently they have a separate drop function
+                    else if (heldObj.gameObject.name == "Shell")
+                    {
+                        dropShell();
+                    }
+                    //Only when the bucket isn't filled with sand and the castle hasn't been built yet
+                    //Check for the tower, because it's the last part that will be built
+                    else if (BD.amount < sandPieces && !SC.towerBuilt)
+                    {
+                        ShovelSand(); //Used for picking up sand
+                    }
+                    //Only when the bucket it filled with sand, so the amount is equal to 4.
+                    else if (bucketFull && !SC.towerBuilt)
+                    {
+                        UseBucket();
+                    }
                 }
                 //In all other situations "drop" the object. This will simple return it to the original position in which it spawned
                 else
@@ -386,6 +390,28 @@ public class GrabObject : MonoBehaviour
                             StartCoroutine(BD.AdjustHeight(child.gameObject, -0.1f));
                         }
                     }
+                }
+                else if (assignmentFour)
+                {
+                    originaLayer = pickObj.layer;
+                    heldObjRB = pickObj.GetComponent<Rigidbody>();
+                    heldObjRB.useGravity = false;
+                    heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
+                    heldObjRB.transform.parent = holdArea;
+                    heldObj = pickObj;
+                    pickObj.layer = LayerMask.NameToLayer("FirstPerson");
+                    oPos = heldObj.transform.position;
+                    oScale = heldObj.transform.localScale;
+                    oRotation = heldObj.transform.rotation;
+
+                    foreach (Transform child in heldObj.transform)
+                    {
+                        child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
+                    }
+
+                    Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                                          new Vector3(0, 0.5f, 0);
+                    heldObj.transform.position = newPosition;
                 }
                 else
                 {

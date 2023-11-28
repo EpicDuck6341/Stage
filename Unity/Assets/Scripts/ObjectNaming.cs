@@ -17,8 +17,10 @@ public class ObjectNaming : MonoBehaviour
     private GrabObject GO;
     private CountdownManager CM;
     private NPCcontroller NPC;
+    private AssignmentChange AC;
     [HideInInspector] public int index = 0;
     [HideInInspector] public int size;
+    private bool switched;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class ObjectNaming : MonoBehaviour
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
         CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
+        AC = GameObject.Find("FirstPersonController").GetComponent<AssignmentChange>();
         NPC = GameObject.Find("NPC").GetComponent<NPCcontroller>();
         size = walkingCoords.Count;
     }
@@ -33,9 +36,14 @@ public class ObjectNaming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (index == size)
+        if (index == size && !switched)
         {
+            switched = true;
             answerGraded = false;
+            FPC.cameraCanMove = true;
+            GO.canPickup = true;
+            GO.assignmentFour = true;
+
         }
         else if (answerGraded)
         {

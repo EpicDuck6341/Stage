@@ -22,7 +22,7 @@ public class AssignmentChange : MonoBehaviour
     {
         if (!switched)
         {
-            if (GO.heldObj == null && PS.size == 0)
+            if (GO.heldObj == null && PS.size == 0 && !ON.answerGraded)
             {
                 switched = true;
                 GO.canPickup = false;

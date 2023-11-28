@@ -4488,6 +4488,7 @@ GameObject:
   - component: {fileID: 8610506515172270175}
   - component: {fileID: 8610506515172270176}
   - component: {fileID: 8610506515172270177}
+  - component: {fileID: 8610506515172270178}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -4512,6 +4513,7 @@ MonoBehaviour:
   pickupRange: 8
   mainCamera: {fileID: 8610506515997428425}
   sand: {fileID: 6571612177452269526, guid: f85d3e98bfaf8f941a3e31c26799c6b3, type: 3}
+  assignmentFour: 0
   canPickup: 1
   sandPieces: 4
   shellPieces: 6
@@ -4572,6 +4574,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c33f9126465794c99d8c06bd7275dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8610506515172270178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610506515172270173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc514ee833751c48b0b3067e8e5b175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barricadeObjects:
+  - {fileID: 443950157}
+  - {fileID: 961656514}
+  - {fileID: 1239661963}
+  - {fileID: 1023378976}
+  transparentMat: {fileID: 2100000, guid: 1c3c2b65596eaa24891b06ee8c5a8cf5, type: 2}
 --- !u!223 &8610506515764881986
 Canvas:
   m_ObjectHideFlags: 0
