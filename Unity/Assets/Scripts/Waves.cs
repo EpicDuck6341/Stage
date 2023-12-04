@@ -5,7 +5,7 @@ using UnityEngine;
 public class Waves : MonoBehaviour
 {
     
-    private float raiseHeight = 1.2f; // The height to raise the object to
+    private float raiseHeight = 4.3f; // The height to raise the object to
     private float raiseTime = 5f;   // Time taken to raise the object
     private float lowerTime = 5f;   // Time taken to lower the object
 
@@ -28,7 +28,7 @@ public class Waves : MonoBehaviour
             }
 
             // Wait for a short duration at the raised position
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(5);
 
             // Lower the object
             timer = 0f;

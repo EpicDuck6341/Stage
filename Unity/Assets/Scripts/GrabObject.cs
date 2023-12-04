@@ -52,6 +52,7 @@ public class GrabObject : MonoBehaviour
 
     private void Start()
     {
+        assignmentFour = true;
         mainCamera = Camera.main;
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         BD = GameObject.Find("Bucket").GetComponent<BucketDetect>();
@@ -110,6 +111,14 @@ public class GrabObject : MonoBehaviour
                     {
                         UseBucket();
                     }
+                    else
+                    {
+                        ThrowObject();
+                    }
+                }
+                else if (assignmentFour)
+                {
+                    placeBarricade();
                 }
                 //In all other situations "drop" the object. This will simple return it to the original position in which it spawned
                 else
@@ -356,6 +365,34 @@ public class GrabObject : MonoBehaviour
             }
         }
     }
+    
+    private void placeBarricade()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+        {
+            //Check if the held shell has the same tag as the transparent hit shell
+            if (hit.collider.gameObject.name == heldObj.gameObject.name)
+            {
+                ObjN.playAudio(3);
+                //Replace the hit shell with the held shell
+                heldObj.layer = LayerMask.NameToLayer("Ignore Raycast");
+                heldObj.GetComponent<MeshCollider>().enabled = false;
+                heldObjRB.transform.parent = null;
+                heldObj.transform.position = hit.collider.gameObject.transform.position;
+                heldObj.transform.localScale = hit.collider.gameObject.transform.localScale;
+                heldObj.transform.rotation = hit.collider.gameObject.transform.rotation;
+                Destroy(hit.collider.gameObject);
+                heldObjRB.constraints = RigidbodyConstraints.None;
+                heldObj.tag = "Untagged";
+                heldObj = null;
+            }
+        }
+        else
+        {
+            ThrowObject();
+        }
+    }
 
 //Used for picking up objects.
 //Interacts differently for different states and objects
@@ -408,9 +445,10 @@ public class GrabObject : MonoBehaviour
                     {
                         child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
                     }
+                    heldObj.transform.localScale = new Vector3(0.3f,0.3f,0.3f);
 
                     Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
-                                          new Vector3(0, 0.5f, 0);
+                        new Vector3(0, 0.2f, 0) + mainCamera.transform.right * 0.3f;
                     heldObj.transform.position = newPosition;
                 }
                 else
