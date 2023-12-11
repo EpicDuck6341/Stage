@@ -1,4 +1,3 @@
-import sys
 from pathlib import Path
 import fuzzywuzzy.fuzz
 import whisper
@@ -7,14 +6,12 @@ from typing import List
 from whisper.tokenizer import get_tokenizer
 from colorama import init, Style
 import re
-import sounddevice as sd
-import wavio as wv
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request
 
 app = Flask(__name__)
 
-repeat = False;
+repeat = False
 
 # Define the upload folder for audio files
 UPLOAD_FOLDER = "/UploadFolder"
@@ -36,7 +33,6 @@ def load_audio(file_path):
     return mel
 
 
-# Modify the route to accept POST requests for audio upload
 @app.route('/', methods=['POST'])
 def upload_audio():
     global repeat
@@ -77,6 +73,7 @@ def upload_audio():
                 'confidence': confidence
             })
 
+            # Grade the answer based on the confidence and similarity to the expected answer
             if similar_words[0]['confidence'] >= 0.6:
                 if similar_words[0]['similarity'] == 100:
                     repeat = False
@@ -96,7 +93,7 @@ def upload_audio():
                     data = "Incorrect"
                     return json.dumps(data)
 
-    except Exception as e:
+    except Exception:
         repeat = True
         data = "Repeat"
         return json.dumps(data)

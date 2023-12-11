@@ -18,10 +18,4 @@ public class ObjectNoises : MonoBehaviour
         aud.clip = clips[index];
         aud.Play();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

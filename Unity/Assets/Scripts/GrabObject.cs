@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class GrabObject : MonoBehaviour
 {
@@ -29,18 +26,20 @@ public class GrabObject : MonoBehaviour
     public GameObject sand;
     private bool shellsPickedUp;
     private bool playerMoved;
-    [HideInInspector] public bool assignmentFour = true;
+    private Transform MCtran;
+    [HideInInspector] public bool assignmentFour;
 
     [HideInInspector] public bool canPickup = true;
 
 
-    private Coroutine distanceCheckCoroutine; // Added to store the coroutine
+    // private Coroutine distanceCheckCoroutine; // Added to store the coroutine
 
     private Vector3 initialPosition;
     private bool shovelEmpty = true;
     private Vector3 oPos;
     private Vector3 oScale;
     private Quaternion oRotation;
+    [HideInInspector] public int barrCounter;
 
     private bool bucketFull;
 
@@ -52,8 +51,8 @@ public class GrabObject : MonoBehaviour
 
     private void Start()
     {
-        assignmentFour = true;
         mainCamera = Camera.main;
+        MCtran = mainCamera.transform;
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         BD = GameObject.Find("Bucket").GetComponent<BucketDetect>();
         SC = GameObject.Find("Bucket").GetComponent<SpawnCastle>();
@@ -74,11 +73,11 @@ public class GrabObject : MonoBehaviour
                 if (heldObj == null)
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit,
+                    if (Physics.Raycast(MCtran.position, MCtran.forward, out hit,
                             pickupRange))
                     {
                         //Check for specific tag to see if it is an object that should be picked up
-                        if (hit.collider.gameObject.tag == "PickUp")
+                        if (hit.collider.gameObject.CompareTag("PickUp"))
                         {
                             ObjN.playAudio(4);
 
@@ -89,9 +88,9 @@ public class GrabObject : MonoBehaviour
                 else if (!assignmentFour)
                 {
                     //Only whenever the shells held have the tag's 
-                    if (heldObj.gameObject.tag == "Shell1" ||
-                        heldObj.gameObject.tag == "Shell2" ||
-                        heldObj.gameObject.tag == "Shell3")
+                    if (heldObj.gameObject.CompareTag("Shell1") ||
+                        heldObj.gameObject.CompareTag("Shell2") ||
+                        heldObj.gameObject.CompareTag("Shell3"))
                     {
                         placeShell();
                     }
@@ -143,7 +142,7 @@ public class GrabObject : MonoBehaviour
         {
             RaycastHit hit;
             //Send a ray from the middle of the shovel along the look direction of the camera
-            if (Physics.Raycast(heldObj.transform.position, mainCamera.transform.forward, out hit, 0.4f))
+            if (Physics.Raycast(heldObj.transform.position, MCtran.forward, out hit, 0.4f))
             {
                 //if the ray hits the "Ground" it will start a short animation
                 if (hit.collider.name == "Ground")
@@ -203,10 +202,9 @@ public class GrabObject : MonoBehaviour
         // Wait for 0.6 second
         yield return new WaitForSeconds(0.6f);
         //Create a sand object at the tip of the shovel
-        GameObject instantiatedPrefab = Instantiate(sand);
-        Vector3 newScale = new Vector3(9.5f, 11.5f, 7.5f);
+        GameObject instantiatedPrefab = Instantiate(sand, heldObj.transform, true);
+        Vector3 newScale = new Vector3(15f, 22f, 7.5f);
         instantiatedPrefab.transform.localScale = newScale;
-        instantiatedPrefab.transform.SetParent(heldObj.transform);
         Vector3 newPos = new Vector3(0, -0.45f, 0.06f); // Adjust the local position here
         instantiatedPrefab.transform.localPosition = newPos;
         instantiatedPrefab.transform.localRotation =
@@ -259,10 +257,10 @@ public class GrabObject : MonoBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+        if (Physics.Raycast(MCtran.position, MCtran.forward, out hit, pickupRange))
         {
             //Objects with the On tag are highlighted in green as to show where the sand castle can be built
-            if (hit.collider.gameObject.tag == "On")
+            if (hit.collider.gameObject.CompareTag("On"))
             {
                 //Spawn the castle part corresponding to the name of the object with the on tag
                 //Defined in another class
@@ -346,7 +344,7 @@ public class GrabObject : MonoBehaviour
     private void placeShell()
     {
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+        if (Physics.Raycast(MCtran.position, MCtran.forward, out hit, pickupRange))
         {
             //Check if the held shell has the same tag as the transparent hit shell
             if (hit.collider.gameObject.tag == heldObj.gameObject.tag)
@@ -369,7 +367,7 @@ public class GrabObject : MonoBehaviour
     private void placeBarricade()
     {
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+        if (Physics.Raycast(MCtran.position, MCtran.forward, out hit, pickupRange))
         {
             //Check if the held shell has the same tag as the transparent hit shell
             if (hit.collider.gameObject.name == heldObj.gameObject.name)
@@ -379,12 +377,14 @@ public class GrabObject : MonoBehaviour
                 heldObj.layer = LayerMask.NameToLayer("Ignore Raycast");
                 heldObj.GetComponent<MeshCollider>().enabled = false;
                 heldObjRB.transform.parent = null;
-                heldObj.transform.position = hit.collider.gameObject.transform.position;
-                heldObj.transform.localScale = hit.collider.gameObject.transform.localScale;
-                heldObj.transform.rotation = hit.collider.gameObject.transform.rotation;
-                Destroy(hit.collider.gameObject);
+                var o = hit.collider.gameObject;
+                heldObj.transform.position = o.transform.position;
+                heldObj.transform.localScale = o.transform.localScale;
+                heldObj.transform.rotation = o.transform.rotation;
+                Destroy(o);
                 heldObjRB.constraints = RigidbodyConstraints.None;
                 heldObj.tag = "Untagged";
+                barrCounter++;
                 heldObj = null;
             }
         }
@@ -401,7 +401,7 @@ public class GrabObject : MonoBehaviour
         if (pickObj.GetComponent<Rigidbody>())
         {
             RaycastHit hit;
-            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+            if (Physics.Raycast(MCtran.position, MCtran.forward, out hit, pickupRange))
             {
                 //Only used at the end of the shell assignment
                 //Whenever the bucket is clicked while it's full with shells a random shell will be assigned as the held object
@@ -416,7 +416,7 @@ public class GrabObject : MonoBehaviour
                     heldObjRB.transform.parent = holdArea;
                     heldObj = obj;
                     obj.layer = LayerMask.NameToLayer("FirstPerson");
-                    Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                    Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
                                           new Vector3(0, 0.15f, 0);
                     heldObj.transform.position = newPosition;
                     BUI.decreaseFill(shellPieces);
@@ -447,8 +447,8 @@ public class GrabObject : MonoBehaviour
                     }
                     heldObj.transform.localScale = new Vector3(0.3f,0.3f,0.3f);
 
-                    Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
-                        new Vector3(0, 0.2f, 0) + mainCamera.transform.right * 0.3f;
+                    Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
+                        new Vector3(0, 0.2f, 0) + MCtran.right * 0.3f;
                     heldObj.transform.position = newPosition;
                 }
                 else
@@ -474,8 +474,8 @@ public class GrabObject : MonoBehaviour
                     //Grab shovel to put sand Can only be done when the castle isn't fully built
                     if (heldObj.gameObject.name == "Shovel" && !SC.towerBuilt)
                     {
-                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.58f +
-                            mainCamera.transform.right * 0.3f - mainCamera.transform.up * 0.2f;
+                        Vector3 newPosition = MCtran.position + MCtran.forward * 0.58f +
+                            MCtran.right * 0.3f - MCtran.up * 0.2f;
                         heldObj.transform.position = newPosition;
                         Vector3 newRotation = new Vector3(-70, 0, 0);
                         heldObj.transform.localRotation = Quaternion.Euler(newRotation);
@@ -486,7 +486,7 @@ public class GrabObject : MonoBehaviour
                     else if (heldObj.gameObject.name == "Bucket" && BD.amount == sandPieces && !SC.towerBuilt)
                     {
                         SC.spawn[0] = true;
-                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                        Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
                                               new Vector3(0, 0.5f, 0);
                         heldObj.transform.position = newPosition;
                         bucketFull = true;
@@ -500,7 +500,7 @@ public class GrabObject : MonoBehaviour
                             collider.enabled = false;
                         }
 
-                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                        Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
                                               new Vector3(0, 0.5f, 0);
                         heldObj.transform.position = newPosition;
                         //Fade to black and transport the camera to the water
@@ -513,7 +513,7 @@ public class GrabObject : MonoBehaviour
                              !shellsPickedUp &&
                              playerMoved)
                     {
-                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f -
+                        Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
                                               new Vector3(0, 0.5f, 0);
                         heldObj.transform.position = newPosition;
                         oPos = new Vector3(731.456f, 0.2146099f, 799.8011f);
@@ -524,7 +524,7 @@ public class GrabObject : MonoBehaviour
                     //Used to grab shells and drop them into the bucket
                     else if (heldObj.gameObject.name == "Shell")
                     {
-                        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.65f;
+                        Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f;
                         heldObj.transform.position = newPosition;
                     }
                     //Inspect is used for useless objects that are only placed there to hinder the player 
@@ -546,7 +546,7 @@ public class GrabObject : MonoBehaviour
         canPickup = false;
         Vector3 newScale = heldObj.transform.localScale * 0.5f;
         heldObj.transform.localScale = newScale;
-        Vector3 newPosition = mainCamera.transform.position + mainCamera.transform.forward * 0.6f;
+        Vector3 newPosition = MCtran.position + MCtran.forward * 0.6f;
         heldObj.transform.position = newPosition;
         initialPosition = heldObj.transform.position;
         Vector3 newRotation = new Vector3(0, 0, 0);

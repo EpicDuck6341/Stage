@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ObjectNaming : MonoBehaviour
 {
@@ -18,6 +17,7 @@ public class ObjectNaming : MonoBehaviour
     private CountdownManager CM;
     private NPCcontroller NPC;
     private AssignmentChange AC;
+    private BlackScreen BS; 
     [HideInInspector] public int index = 0;
     [HideInInspector] public int size;
     private bool switched;
@@ -30,6 +30,7 @@ public class ObjectNaming : MonoBehaviour
         CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
         AC = GameObject.Find("FirstPersonController").GetComponent<AssignmentChange>();
         NPC = GameObject.Find("NPC").GetComponent<NPCcontroller>();
+        BS = GameObject.Find("CountdownManager").GetComponent<BlackScreen>();
         size = walkingCoords.Count;
     }
 
@@ -43,15 +44,17 @@ public class ObjectNaming : MonoBehaviour
             FPC.cameraCanMove = true;
             GO.canPickup = true;
             GO.assignmentFour = true;
+            BS.reticle.GetComponent<Image>().enabled = true;
 
         }
-        else if (answerGraded)
+        else if (answerGraded && !switched)
         {
+            BS.reticle.GetComponent<Image>().enabled = false;
             answerGraded = false;
             
             GO.canPickup = false;
             FPC.cameraCanMove = false;
-            StartCoroutine(NPC.MoveNPC(10, walkingCoords[index]));
+            StartCoroutine(NPC.MoveNPC(8, walkingCoords[index]));
         }
     }
 }
