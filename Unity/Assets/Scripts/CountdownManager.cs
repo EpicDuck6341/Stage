@@ -10,20 +10,12 @@ public class CountdownManager : MonoBehaviour
 {
     public GameObject timer;
     [HideInInspector] public bool isStarted;
-    private FirstPersonController FPC;
-    private GrabObject GO;
-    [HideInInspector] public bool timerActive;
-    
-    private AudioSource aud;
     private ImageChanger IC;
 
 
     private void Start()
     {
-        FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
-        GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
         IC = GameObject.Find("Image").GetComponent<ImageChanger>();
-        aud = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         timer.SetActive(false);
     }
 
@@ -32,7 +24,6 @@ public class CountdownManager : MonoBehaviour
         IC.setImage(IC.sprite[0]);
         timer.SetActive(true);
         isStarted = true;
-        timerActive = true;
         timer.transform.Find("RadialProgressBar").GetComponent<CircularProgressBar>().ActivateCountdown(duration);
 
         StartCoroutine(EndTimer(duration));
@@ -43,7 +34,6 @@ public class CountdownManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         isStarted = false;
         timer.SetActive(false);
-        timerActive = false;
         IC.setImage(IC.sprite[1]);
     }
     

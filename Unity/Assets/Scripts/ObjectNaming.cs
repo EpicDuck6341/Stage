@@ -9,14 +9,12 @@ public class ObjectNaming : MonoBehaviour
     public List<Vector3> walkingCoords;
     //Used to write out the names of the object in question,must be in th same sequence that the NPC walk
     public String[] coordNames;
-
+    public GameObject[] objects;
     //Used to initiate the next object question/inpsection
     [HideInInspector] public bool answerGraded;
     private FirstPersonController FPC;
     private GrabObject GO;
-    private CountdownManager CM;
     private NPCcontroller NPC;
-    private AssignmentChange AC;
     private BlackScreen BS; 
     [HideInInspector] public int index = 0;
     [HideInInspector] public int size;
@@ -27,8 +25,6 @@ public class ObjectNaming : MonoBehaviour
     {
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
-        CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
-        AC = GameObject.Find("FirstPersonController").GetComponent<AssignmentChange>();
         NPC = GameObject.Find("NPC").GetComponent<NPCcontroller>();
         BS = GameObject.Find("CountdownManager").GetComponent<BlackScreen>();
         size = walkingCoords.Count;
@@ -54,7 +50,7 @@ public class ObjectNaming : MonoBehaviour
             
             GO.canPickup = false;
             FPC.cameraCanMove = false;
-            StartCoroutine(NPC.MoveNPC(8, walkingCoords[index]));
+            StartCoroutine(NPC.MoveNPC(8, walkingCoords[index],objects[index]));
         }
     }
 }

@@ -4,22 +4,19 @@ using UnityEngine;
 public class NPCcontroller : MonoBehaviour
 {
     public GameObject player;
+    public GameObject cam;
     public Animator anim;
-    public GameObject neck;
     private float minDistance;
     private CountdownManager CM;
-    private AudioPlayer AP;
-
-    private ObjectNaming ON;
+    private NPCVoiceLines NPCV;
 
     private static readonly int Walk = Animator.StringToHash("walk");
 
     // Start is called before the first frame update
     void Start()
     {
+        NPCV = GameObject.Find("NPCVoiceLines").GetComponent<NPCVoiceLines>();
         CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
-        AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
-        ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
         RaycastHit hit;
         if (Physics.Raycast(gameObject.transform.position + new Vector3(0, 0.5f, 0), -gameObject.transform.up, out hit,
                 50))
@@ -29,12 +26,15 @@ public class NPCcontroller : MonoBehaviour
     }
 
 
-    public IEnumerator MoveNPC(float duration, Vector3 target)
+    public IEnumerator MoveNPC(float duration, Vector3 target,GameObject obj)
     {
         Vector3 orgPos = gameObject.transform.position;
         Vector3 targetPos = target;
         float minimum = 1.5f;
+        player.transform.rotation = Quaternion.Euler(0,0,0);
+        cam.transform.rotation = Quaternion.Euler(0,0,0);
         anim.SetBool(Walk, true);
+
 
         // Move forward
         float elapsedTime = 0;
@@ -47,15 +47,8 @@ public class NPCcontroller : MonoBehaviour
             Vector3 lookDirection = (targetPos - gameObject.transform.position).normalized;
             Quaternion newRotation = Quaternion.LookRotation(new Vector3(lookDirection.x, 0, lookDirection.z));
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, newRotation, t);
-            // Adjust player camera to follow the NPC
-            Vector3 playerLookDirection = (gameObject.transform.position - player.transform.position).normalized;
-
-            // Set the y component of playerLookDirection to match the NPC's height
-            playerLookDirection.y = gameObject.transform.position.y;
-
-            Quaternion playerRotation = Quaternion.LookRotation(playerLookDirection);
-            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, playerRotation, t);
-
+            player.transform.LookAt(new Vector3(gameObject.transform.localPosition.x,
+                gameObject.transform.localPosition.y + 0.04f, gameObject.transform.localPosition.z));
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.position + new Vector3(0, 0.5f, 0), -gameObject.transform.up,
                     out hit,
@@ -84,7 +77,7 @@ public class NPCcontroller : MonoBehaviour
             yield return null;
         }
 
-        anim.SetBool("walk", false);
+        anim.SetBool(Walk, false);
         yield return new WaitForSeconds(0.3f);
 
         elapsedTime = 0;
@@ -100,11 +93,15 @@ public class NPCcontroller : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        AP.playAudio(AP.clips[ON.index]);
+        
+        NPCV.playAudio(11);
         anim.SetBool("talk", true);
-        yield return new WaitWhile(() => AP.auds.isPlaying);
+        yield return new WaitWhile(() => NPCV.aud.isPlaying);
         anim.SetBool("talk", false);
+        player.transform.rotation = Quaternion.Euler(0,0,0);
+        cam.transform.rotation = Quaternion.Euler(0,0,0);
+        player.transform.LookAt(new Vector3(obj.transform.position.x,obj.transform.position.y-0.5f,obj.transform.position.z));
+        yield return new WaitForSeconds(5f);
         CM.StartTimer(5);
     }
 }

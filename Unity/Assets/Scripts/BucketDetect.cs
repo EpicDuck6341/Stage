@@ -16,14 +16,14 @@ public class BucketDetect : MonoBehaviour
     private GameObject instantiatedPrefab;
     private PlaceShells PS;
     private GrabObject GO;
-    private ObjectNaming ON;
     private BucketUI BUI;
+    private NPCVoiceLines NPCV;
 
     private void Start()
     {
+        NPCV = GameObject.Find("NPCVoiceLines").GetComponent<NPCVoiceLines>();
         PS = GameObject.Find("FirstPersonController").GetComponent<PlaceShells>();
         GO = GameObject.Find("FirstPersonController").GetComponent<GrabObject>();
-        ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
         BUI = GameObject.Find("BucketLevel").GetComponent<BucketUI>();
     }
 
@@ -55,12 +55,17 @@ public class BucketDetect : MonoBehaviour
                 {
                     //Increase the prefabs height
                     StartCoroutine(AdjustHeight(instantiatedPrefab, 0.2f));
+                    if (amount == GO.sandPieces)
+                    {
+                        NPCV.playAudio(4);
+                    }
                 }
 
                 if (amount == GO.sandPieces)
                 {
                     //Destroy all sand objects that are laying around whenever the bucket is filled
                     GameObject[] cubes = GameObject.FindGameObjectsWithTag("Sand");
+                    NPCV.playAudio(4);
                     foreach (GameObject cube in cubes)
                     {
                         Destroy(cube);
@@ -92,12 +97,16 @@ public class BucketDetect : MonoBehaviour
                 {
                     //Increase height
                     StartCoroutine(AdjustHeight(instantiatedPrefab, 0.12f));
+                    if (amount == GO.shellPieces)
+                    {
+                        NPCV.playAudio(4);
+                    }
                 }
             }
         }
     }
 
-    
+
     //Used to raise or lower the prefab used to indicate the fill level of the bucket
     public IEnumerator AdjustHeight(GameObject obj, float targetLevel)
     {
@@ -128,9 +137,6 @@ public class BucketDetect : MonoBehaviour
             yield return null;
         }
     }
-
-
-
 
 
     private void Update()

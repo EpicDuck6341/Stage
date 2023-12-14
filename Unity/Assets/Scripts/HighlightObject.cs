@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class HighlightObject : MonoBehaviour
 {
+    private NPCVoiceLines NPCV;
     public int timer = 0;
     // Start is called before the first frame update
     void Start()
     {
+        NPCV = GameObject.Find("NPCVoiceLines").GetComponent<NPCVoiceLines>();
         Invoke("invoker",timer );
     }
 
     private void invoker()
     {
+        if (gameObject.name.Equals("Shovel"))
+        {
+        NPCV.playAudio(1);
+        }
         StartCoroutine(HighlightObjects(gameObject));
     }
 

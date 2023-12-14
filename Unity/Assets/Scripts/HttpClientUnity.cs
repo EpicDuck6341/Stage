@@ -16,16 +16,16 @@ public class HttpClientUnity : MonoBehaviour
     private ObjectNaming ON;
     private ImageChanger IC;
     private NPCcontroller NPC;
-    private AudioPlayer AP;
     private CountdownManager CM;
+    private NPCVoiceLines NPCV; 
 
     private void Start()
     {
+        NPCV = GameObject.Find("NPCVoiceLines").GetComponent<NPCVoiceLines>();
         RA = GameObject.Find("AudioManager").GetComponent<RecordAudio>();
         ON = GameObject.Find("FirstPersonController").GetComponent<ObjectNaming>();
         IC = GameObject.Find("Image").GetComponent<ImageChanger>();
         NPC = GameObject.Find("NPC").GetComponent<NPCcontroller>();
-        AP = GameObject.Find("AudioManager").GetComponent<AudioPlayer>();
         CM = GameObject.Find("CountdownManager").GetComponent<CountdownManager>();
     }
 
@@ -66,14 +66,14 @@ public class HttpClientUnity : MonoBehaviour
             if (responseBody == "\"Correct\"")
             {
                 // Start the next question for assignment 3
-                //Play audio here for correct answer
+                NPCV.playAudio(13);
                 IC.setImage(IC.sprite[2]);
                 ON.index++;
                 Invoke("invoker", 4);
             }
             else if (responseBody == "\"Incorrect\"")
             {
-                //Play audio here for incorrect answer
+                NPCV.playAudio(13);
                 ON.index++;
                 IC.setImage(IC.sprite[2]);
                 Invoke("invoker", 4);
@@ -104,12 +104,11 @@ public class HttpClientUnity : MonoBehaviour
     private IEnumerator PlayAudio()
     {
         IC.clearImage();
-        //Nog een extra gedeelte waar wordt gevraagd om het te herhalen
-        AP.playAudio(AP.clips[ON.index]);
+        NPCV.playAudio(12);
 
         NPC.anim.SetBool("talk", true);
 
-        yield return new WaitWhile(() => AP.auds.isPlaying);
+        yield return new WaitWhile(() => NPCV.aud.isPlaying);
 
         NPC.anim.SetBool("talk", false);
 

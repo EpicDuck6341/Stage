@@ -22,13 +22,13 @@ public class AssignmentChange : MonoBehaviour
     {
         if (!switched)
         {
-            // if (GO.heldObj == null && PS.size == 0 && !ON.answerGraded)
-            // {
+             if (GO.heldObj == null && PS.size == 0 && !ON.answerGraded)
+             {
             switched = true;
             GO.canPickup = false;
             // Invoke the SetAnswerGraded method with a delay of 0.5 seconds (adjust the delay as needed)
             Invoke("SetAnswerGraded", 5);
-            // }
+             }
         }
     }
 

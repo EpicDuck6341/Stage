@@ -22,6 +22,7 @@ public class GrabObject : MonoBehaviour
     private BlackScreen BS;
     private PlaceShells PS;
     private ObjectNoises ObjN;
+    private NPCVoiceLines NPCV;
     private BucketUI BUI;
     public GameObject sand;
     private bool shellsPickedUp;
@@ -53,6 +54,7 @@ public class GrabObject : MonoBehaviour
     {
         mainCamera = Camera.main;
         MCtran = mainCamera.transform;
+        NPCV = GameObject.Find("NPCVoiceLines").GetComponent<NPCVoiceLines>();
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         BD = GameObject.Find("Bucket").GetComponent<BucketDetect>();
         SC = GameObject.Find("Bucket").GetComponent<SpawnCastle>();
@@ -232,6 +234,7 @@ public class GrabObject : MonoBehaviour
         FPC.cameraCanMove = true;
         canPickup = true;
         shovelEmpty = false;
+        NPCV.playAudio(3);
     }
 
 //Different drop function for the shells, as they need to behave differently than other objects.
@@ -407,6 +410,7 @@ public class GrabObject : MonoBehaviour
                 //Whenever the bucket is clicked while it's full with shells a random shell will be assigned as the held object
                 if (shellsPickedUp && hit.collider.gameObject.name == "Bucket" && !playerMoved && PS.size > 0)
                 {
+                    NPCV.playAudio(10);
                     GameObject obj = PS.pickShell();
                     originaLayer = obj.layer;
                     heldObjRB = obj.GetComponent<Rigidbody>();
@@ -474,6 +478,7 @@ public class GrabObject : MonoBehaviour
                     //Grab shovel to put sand Can only be done when the castle isn't fully built
                     if (heldObj.gameObject.name == "Shovel" && !SC.towerBuilt)
                     {
+                        NPCV.playAudio(2);
                         Vector3 newPosition = MCtran.position + MCtran.forward * 0.58f +
                             MCtran.right * 0.3f - MCtran.up * 0.2f;
                         heldObj.transform.position = newPosition;
@@ -485,6 +490,7 @@ public class GrabObject : MonoBehaviour
                     //Can only grab the bucket to build the sand castle when it's full and if the castle isn't built
                     else if (heldObj.gameObject.name == "Bucket" && BD.amount == sandPieces && !SC.towerBuilt)
                     {
+                        NPCV.playAudio(5);
                         SC.spawn[0] = true;
                         Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
                                               new Vector3(0, 0.5f, 0);
@@ -507,6 +513,7 @@ public class GrabObject : MonoBehaviour
                         StartCoroutine(BS.FadeToBlack(0.5f, new Vector3(730, -0.3f, 806)));
                         playerMoved = true;
                         oPos = new Vector3(730, 0.086f, 804.563f);
+                        NPCV.playAudio(7);
                     }
                     //Used for transporting the player back when the shells have been picked up
                     else if (heldObj.gameObject.name == "Bucket" && BD.amount == 6 && SC.towerBuilt &&
@@ -526,6 +533,7 @@ public class GrabObject : MonoBehaviour
                     {
                         Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f;
                         heldObj.transform.position = newPosition;
+                        NPCV.playAudio(8);
                     }
                     //Inspect is used for useless objects that are only placed there to hinder the player 
                     //Can only inspect whenever the player is present at the original position
@@ -588,6 +596,21 @@ public class GrabObject : MonoBehaviour
 //Whenever the object is dropped it's returned back to its original position and the held object is set to nothing
     private void ThrowObject()
     {
+        //Tell the player to pick up the bucket to then get teleported
+        if (SC.towerBuilt && heldObj.name.Equals("Bucket") && BD.amount == 0 && !playerMoved)
+        {
+            NPCV.playAudio(6);
+        }
+        //Used to inform the user of the shells inside the bucket that can be picked up
+        else if(heldObj.name.Equals("Bucket") && BD.amount == shellPieces)
+        {
+            NPCV.playAudio(9);
+        }
+        //Repeat that the shovel needs to picked up for the tower building
+        else if(heldObj.name.Equals("Bucket") && BD.amount == 0 && SC.bottomBuilt && !playerMoved)
+        {
+            NPCV.playAudio(0);
+        }
         Collider[] colliders = heldObj.GetComponents<Collider>();
         foreach (Collider collider in colliders)
         {
