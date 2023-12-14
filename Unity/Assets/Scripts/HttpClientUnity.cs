@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Collections;
-using System.Threading.Tasks;
-using TMPro;
 using UnityEngine;
-using Object = System.Object;
 
 public class HttpClientUnity : MonoBehaviour
 {

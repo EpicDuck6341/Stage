@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class GrabObject : MonoBehaviour
@@ -28,6 +30,8 @@ public class GrabObject : MonoBehaviour
     private bool shellsPickedUp;
     private bool playerMoved;
     private Transform MCtran;
+    private bool sandPickUpPlayed;
+    private bool shellPickUpPlayed;
     [HideInInspector] public bool assignmentFour;
 
     [HideInInspector] public bool canPickup = true;
@@ -66,74 +70,54 @@ public class GrabObject : MonoBehaviour
 
     private void Update()
     {
-        //Used to lock the player out of interacting with an object
         if (canPickup)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                //Only when the player is not holding an object
-                if (heldObj == null)
-                {
-                    RaycastHit hit;
-                    if (Physics.Raycast(MCtran.position, MCtran.forward, out hit,
-                            pickupRange))
-                    {
-                        //Check for specific tag to see if it is an object that should be picked up
-                        if (hit.collider.gameObject.CompareTag("PickUp"))
-                        {
-                            ObjN.playAudio(4);
-
-                            PickupObject(hit.transform.gameObject);
-                        }
-                    }
-                }
-                else if (!assignmentFour)
-                {
-                    //Only whenever the shells held have the tag's 
-                    if (heldObj.gameObject.CompareTag("Shell1") ||
-                        heldObj.gameObject.CompareTag("Shell2") ||
-                        heldObj.gameObject.CompareTag("Shell3"))
-                    {
-                        placeShell();
-                    }
-                    //Because the shells interact differently they have a separate drop function
-                    else if (heldObj.gameObject.name == "Shell")
-                    {
-                        dropShell();
-                    }
-                    //Only when the bucket isn't filled with sand and the castle hasn't been built yet
-                    //Check for the tower, because it's the last part that will be built
-                    else if (BD.amount < sandPieces && !SC.towerBuilt)
-                    {
-                        ShovelSand(); //Used for picking up sand
-                    }
-                    //Only when the bucket it filled with sand, so the amount is equal to 4.
-                    else if (bucketFull && !SC.towerBuilt)
-                    {
-                        UseBucket();
-                    }
-                    else
-                    {
-                        ThrowObject();
-                    }
-                }
-                else if (assignmentFour)
-                {
-                    placeBarricade();
-                }
-                //In all other situations "drop" the object. This will simple return it to the original position in which it spawned
-                else
-                {
-                    ThrowObject();
-                }
-            }
-
-            //Used for moving around the held object
+            HandleInput();
             if (heldObj != null)
-            {
                 MoveObject();
+        }
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (heldObj == null)
+                TryPickupObject();
+            else if (!assignmentFour)
+                HandleHeldObject();
+            else if (assignmentFour)
+                placeBarricade();
+            else
+                ThrowObject();
+        }
+    }
+
+    private void TryPickupObject()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, pickupRange))
+        {
+            if (hit.collider.gameObject.CompareTag("PickUp"))
+            {
+                ObjN.playAudio(4);
+                PickupObject(hit.transform.gameObject);
             }
         }
+    }
+
+    private void HandleHeldObject()
+    {
+        if (heldObj.CompareTag("Shell1") || heldObj.CompareTag("Shell2") || heldObj.CompareTag("Shell3"))
+            placeShell();
+        else if (heldObj.name == "Shell")
+            dropShell();
+        else if (BD.amount < sandPieces && !SC.towerBuilt)
+            ShovelSand();
+        else if (bucketFull && !SC.towerBuilt)
+            UseBucket();
+        else
+            ThrowObject();
     }
 
 
@@ -234,7 +218,11 @@ public class GrabObject : MonoBehaviour
         FPC.cameraCanMove = true;
         canPickup = true;
         shovelEmpty = false;
-        NPCV.playAudio(3);
+        if (!sandPickUpPlayed)
+        {
+            NPCV.playAudio(3);
+            sandPickUpPlayed = true;
+        }
     }
 
 //Different drop function for the shells, as they need to behave differently than other objects.
@@ -366,7 +354,7 @@ public class GrabObject : MonoBehaviour
             }
         }
     }
-    
+
     private void placeBarricade()
     {
         RaycastHit hit;
@@ -415,6 +403,7 @@ public class GrabObject : MonoBehaviour
                     originaLayer = obj.layer;
                     heldObjRB = obj.GetComponent<Rigidbody>();
                     obj.GetComponent<MeshCollider>().enabled = false;
+                    
                     heldObjRB.useGravity = false;
                     heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
                     heldObjRB.transform.parent = holdArea;
@@ -449,7 +438,8 @@ public class GrabObject : MonoBehaviour
                     {
                         child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
                     }
-                    heldObj.transform.localScale = new Vector3(0.3f,0.3f,0.3f);
+
+                    heldObj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
                     Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f -
                         new Vector3(0, 0.2f, 0) + MCtran.right * 0.3f;
@@ -533,7 +523,11 @@ public class GrabObject : MonoBehaviour
                     {
                         Vector3 newPosition = MCtran.position + MCtran.forward * 0.65f;
                         heldObj.transform.position = newPosition;
-                        NPCV.playAudio(8);
+                        if (!shellPickUpPlayed)
+                        {
+                            NPCV.playAudio(8);
+                            shellPickUpPlayed = true;
+                        }
                     }
                     //Inspect is used for useless objects that are only placed there to hinder the player 
                     //Can only inspect whenever the player is present at the original position
@@ -602,15 +596,16 @@ public class GrabObject : MonoBehaviour
             NPCV.playAudio(6);
         }
         //Used to inform the user of the shells inside the bucket that can be picked up
-        else if(heldObj.name.Equals("Bucket") && BD.amount == shellPieces)
+        else if (heldObj.name.Equals("Bucket") && BD.amount == shellPieces)
         {
             NPCV.playAudio(9);
         }
         //Repeat that the shovel needs to picked up for the tower building
-        else if(heldObj.name.Equals("Bucket") && BD.amount == 0 && SC.bottomBuilt && !playerMoved)
+        else if (heldObj.name.Equals("Bucket") && BD.amount == 0 && SC.bottomBuilt && !playerMoved)
         {
             NPCV.playAudio(0);
         }
+
         Collider[] colliders = heldObj.GetComponents<Collider>();
         foreach (Collider collider in colliders)
         {

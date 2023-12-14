@@ -18,6 +18,7 @@ public class NPCVoiceLines : MonoBehaviour
     //11 = Vraag over hoe het object heet/NPC stelt vraag in opdracht 3
     //12 = Niet goed verstaan
     //13 = Antwoord op de vraag geven
+    //14 = Herhaal process tot de emmer vol is
 
     public AudioClip[] clips;
     [HideInInspector] public AudioSource aud;

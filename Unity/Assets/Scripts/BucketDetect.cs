@@ -50,6 +50,7 @@ public class BucketDetect : MonoBehaviour
                     instantiatedPrefab.transform.localRotation =
                         Quaternion.Euler(0, 0, 0); // Adjust the local rotation here
                     spawned = true;
+                    NPCV.playAudio(14);
                 }
                 else if (spawned)
                 {
@@ -92,6 +93,7 @@ public class BucketDetect : MonoBehaviour
                     instantiatedPrefab.transform.localRotation =
                         Quaternion.Euler(0, 0, 0); // Adjust the local rotation here
                     spawned = true;
+                    NPCV.playAudio(14);
                 }
                 else if (spawned)
                 {
