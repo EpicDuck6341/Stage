@@ -13,12 +13,12 @@ public class StartUp : MonoBehaviour
 
     private void startPython()
     {
-        string path = "C:\\Users\\kaijs\\Documents\\GitHub\\Stage\\Stage\\code";
+        string path = "C:\\Users\\Documents\\GitHub\\Stage\\Stage\\code";
         string script = "main.py";
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
-            FileName = "python.exe",
+            FileName = "python.exe",  // Assuming 'python.exe' is in the system PATH
             Arguments = Path.Combine(path, script),
             WorkingDirectory = path,
             UseShellExecute = false,
@@ -27,8 +27,19 @@ public class StartUp : MonoBehaviour
 
         using (Process process = new Process { StartInfo = startInfo })
         {
+            process.EnableRaisingEvents = true;  // Enable Exited event handling
+            process.Exited += (sender, e) =>
+            {
+                // Perform cleanup or close the current process
+                Environment.Exit(0);
+            };
+
             process.Start();
+
+            // Optionally wait for the process to exit
+            process.WaitForExit();
         }
     }
+
 
 }
