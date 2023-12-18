@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCVoiceLines : MonoBehaviour
 {
+    //clips
     //0 = Click op de Schep 
     //1 = Schep nog niet gevonden
     //2 = Click op het zand
@@ -19,8 +20,16 @@ public class NPCVoiceLines : MonoBehaviour
     //12 = Niet goed verstaan
     //13 = Antwoord op de vraag geven
     //14 = Herhaal process tot de emmer vol is
-
+    
+    //answers
+    //0 = emmer
+    //1 = surfboard
+    //2 =  schep
+    //3 = zwemband
+    
     public AudioClip[] clips;
+    //Assignment 3 answers
+    public AudioClip[] answers;
     [HideInInspector] public AudioSource aud;
     
     void Start()
@@ -33,6 +42,12 @@ public class NPCVoiceLines : MonoBehaviour
     public void playAudio(int index)
     {
         aud.clip = clips[index];
+        aud.Play();
+    }
+
+    public void playAnswer(int index)
+    {
+        aud.clip = answers[index];
         aud.Play();
     }
 }

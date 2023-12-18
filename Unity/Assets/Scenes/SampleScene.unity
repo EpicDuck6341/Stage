@@ -340,6 +340,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c909bf8256b1d2346a60724a543356b7, type: 3}
   - {fileID: 8300000, guid: 685db470a7f8e764e9cf3c71fb7150ee, type: 3}
   - {fileID: 8300000, guid: 685db470a7f8e764e9cf3c71fb7150ee, type: 3}
+  answers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   aud: {fileID: 0}
 --- !u!82 &335594679
 AudioSource:
@@ -4757,6 +4762,7 @@ GameObject:
   - component: {fileID: 8610506515172270176}
   - component: {fileID: 8610506515172270177}
   - component: {fileID: 8610506515172270178}
+  - component: {fileID: 8610506515172270179}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -4865,6 +4871,18 @@ MonoBehaviour:
   - {fileID: 1239661963}
   - {fileID: 113159134}
   transparentMat: {fileID: 2100000, guid: 1c3c2b65596eaa24891b06ee8c5a8cf5, type: 2}
+--- !u!114 &8610506515172270179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610506515172270173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7552a062458e54ba5eca4969e9bbd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &8610506515764881986
 Canvas:
   m_ObjectHideFlags: 0

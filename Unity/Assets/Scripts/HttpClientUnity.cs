@@ -12,7 +12,9 @@ public class HttpClientUnity : MonoBehaviour
     private ImageChanger IC;
     private NPCcontroller NPC;
     private CountdownManager CM;
-    private NPCVoiceLines NPCV; 
+    private NPCVoiceLines NPCV;
+    //Keeps track of the currents expected answer for playing the audio file
+    private int answerIndex;
 
     private void Start()
     {
@@ -61,14 +63,16 @@ public class HttpClientUnity : MonoBehaviour
             if (responseBody == "\"Correct\"")
             {
                 // Start the next question for assignment 3
-                NPCV.playAudio(13);
+                NPCV.playAnswer(answerIndex);
+                answerIndex++;
                 IC.setImage(IC.sprite[2]);
                 ON.index++;
                 Invoke("invoker", 4);
             }
             else if (responseBody == "\"Incorrect\"")
             {
-                NPCV.playAudio(13);
+                NPCV.playAnswer(answerIndex);
+                answerIndex++;
                 ON.index++;
                 IC.setImage(IC.sprite[2]);
                 Invoke("invoker", 4);

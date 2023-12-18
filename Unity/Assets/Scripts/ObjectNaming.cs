@@ -7,6 +7,7 @@ public class ObjectNaming : MonoBehaviour
 {
     //Used to navigate the NPC around the island
     public List<Vector3> walkingCoords;
+    
     //Used to write out the names of the object in question,must be in th same sequence that the NPC walk
     public String[] coordNames;
     public GameObject[] objects;

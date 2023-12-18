@@ -1,6 +1,6 @@
 from pathlib import Path
 import fuzzywuzzy.fuzz
-import whisper
+import whisperLocal as whisper
 import colorsys
 from typing import List
 from whisper.tokenizer import get_tokenizer
@@ -39,6 +39,7 @@ def upload_audio():
     try:
         # Check if the 'audio' and 'objectName' fields are in the request
         if 'audio' not in request.files or 'objectName' not in request.form:
+            print("Audio Missing")
             return "Missing file part or objectName", 400
 
         file = request.files['audio']
@@ -46,6 +47,7 @@ def upload_audio():
 
         # Check if the file has a valid filename
         if file.filename == '':
+            print("No selected file")
             return "No selected file", 400
 
         if file:
@@ -93,10 +95,17 @@ def upload_audio():
                     data = "Incorrect"
                     return json.dumps(data)
 
-    except Exception:
-        repeat = True
-        data = "Repeat"
-        return json.dumps(data)
+    except Exception as e:
+        print(e)
+        print("Exception caught!")
+        if not repeat:
+            repeat = True
+            data = "Repeat"
+            return json.dumps(data)
+        else:
+            repeat = False
+            data = "Incorrect"
+            return json.dumps(data)
 
 
 def calculate_confidence(tokens: List[int], token_probs: List[float], tokenizer_temp):
@@ -162,3 +171,5 @@ def main():
 if __name__ == "__main__":
     model = load_model()
     app.run()
+
+
