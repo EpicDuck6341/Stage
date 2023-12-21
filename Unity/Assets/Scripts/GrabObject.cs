@@ -1,8 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 
 public class GrabObject : MonoBehaviour
 {
@@ -195,8 +192,6 @@ public class GrabObject : MonoBehaviour
         instantiatedPrefab.transform.localPosition = newPos;
         instantiatedPrefab.transform.localRotation =
             Quaternion.Euler(-8.3f, 0f, 180f); // Adjust the local rotation here
-        MeshCollider collider = instantiatedPrefab.AddComponent<MeshCollider>();
-        collider.convex = true;
         instantiatedPrefab.layer = LayerMask.NameToLayer("FirstPerson");
         instantiatedPrefab.tag = "Sand"; // Set the tag to "Sand"
 
@@ -283,7 +278,7 @@ public class GrabObject : MonoBehaviour
 
                     ThrowObject();
                 }
-            }
+            } 
             //Used for building the tower,unlike the On tag which is used for the lower part
             else if (hit.collider.gameObject.tag == "Tower")
             {

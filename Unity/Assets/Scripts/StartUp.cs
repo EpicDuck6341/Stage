@@ -1,45 +1,51 @@
-using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class StartUp : MonoBehaviour
 {
+    private Process process;
+
     private void Start()
     {
-        startPython();
+        StartPython();
     }
 
-    private void startPython()
+    //Starts the the local flask server with the speech recognition
+    private void StartPython()
     {
-        string path = "C:\\Users\\Documents\\GitHub\\Stage\\Stage\\code";
+        string path = "C:\\Users\\kaijs\\Documents\\GitHub\\Stage\\Stage\\code";
         string script = "main.py";
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
-            FileName = "python.exe",  // Assuming 'python.exe' is in the system PATH
+            FileName = "python.exe", // Assuming 'python.exe' is in the system PATH
             Arguments = Path.Combine(path, script),
             WorkingDirectory = path,
             UseShellExecute = false,
             CreateNoWindow = true,
         };
 
-        using (Process process = new Process { StartInfo = startInfo })
+        process = new Process { StartInfo = startInfo };
+
+        process.Start();
+    }
+
+    private void Update()
+    {
+        if (process != null && process.HasExited)
         {
-            process.EnableRaisingEvents = true;  // Enable Exited event handling
-            process.Exited += (sender, e) =>
-            {
-                // Perform cleanup or close the current process
-                Environment.Exit(0);
-            };
-
-            process.Start();
-
-            // Optionally wait for the process to exit
-            process.WaitForExit();
+            OnApplicationQuit();
         }
     }
 
-
+    private void OnApplicationQuit()
+    {
+        if (process != null && !process.HasExited)
+        {
+            // Stop the process if it's still running
+            process.Kill();
+            process.WaitForExit(); // Wait for the process to finish cleaning up resources
+        }
+    }
 }

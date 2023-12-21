@@ -26,7 +26,7 @@ public class AssignmentChange : MonoBehaviour
             {
                 switched = true;
                 GO.canPickup = false;
-                // Invoke the SetAnswerGraded method with a delay of 0.5 seconds (adjust the delay as needed)
+                // Invoke the SetAnswerGraded method with a delay of 0.5 seconds 
                 Invoke("SetAnswerGraded", 5);
             }
         }
