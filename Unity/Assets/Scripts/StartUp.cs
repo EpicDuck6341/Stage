@@ -14,7 +14,7 @@ public class StartUp : MonoBehaviour
     //Starts the the local flask server with the speech recognition
     private void StartPython()
     {
-        string path = "C:\\Users\\kaijs\\Documents\\GitHub\\Stage\\Stage\\code";
+        string path = Path.GetFullPath("..\\code");
         string script = "main.py";
 
         ProcessStartInfo startInfo = new ProcessStartInfo
