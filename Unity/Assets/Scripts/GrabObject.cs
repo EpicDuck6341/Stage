@@ -398,7 +398,6 @@ public class GrabObject : MonoBehaviour
                     originaLayer = obj.layer;
                     heldObjRB = obj.GetComponent<Rigidbody>();
                     obj.GetComponent<MeshCollider>().enabled = false;
-                    
                     heldObjRB.useGravity = false;
                     heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
                     heldObjRB.transform.parent = holdArea;
@@ -418,17 +417,7 @@ public class GrabObject : MonoBehaviour
                 }
                 else if (assignmentFour)
                 {
-                    originaLayer = pickObj.layer;
-                    heldObjRB = pickObj.GetComponent<Rigidbody>();
-                    heldObjRB.useGravity = false;
-                    heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
-                    heldObjRB.transform.parent = holdArea;
-                    heldObj = pickObj;
-                    pickObj.layer = LayerMask.NameToLayer("FirstPerson");
-                    oPos = heldObj.transform.position;
-                    oScale = heldObj.transform.localScale;
-                    oRotation = heldObj.transform.rotation;
-
+                    ObjectHandling(pickObj);
                     foreach (Transform child in heldObj.transform)
                     {
                         child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
@@ -443,18 +432,7 @@ public class GrabObject : MonoBehaviour
                 else
                 {
                     //The hit object will be assigned as the held object 
-                    originaLayer = pickObj.layer;
-                    heldObjRB = pickObj.GetComponent<Rigidbody>();
-                    heldObjRB.useGravity = false;
-                    heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
-                    heldObjRB.transform.parent = holdArea;
-                    heldObj = pickObj;
-                    pickObj.layer = LayerMask.NameToLayer("FirstPerson");
-                    oPos = heldObj.transform.position;
-                    oScale = heldObj.transform.localScale;
-                    oRotation = heldObj.transform.rotation;
-
-
+                    ObjectHandling(pickObj);
                     foreach (Transform child in heldObj.transform)
                     {
                         child.gameObject.layer = LayerMask.NameToLayer("FirstPerson");
@@ -534,6 +512,7 @@ public class GrabObject : MonoBehaviour
             }
         }
     }
+    
 
 
     private void InspectObject(Vector3 oPos, Vector3 oScale, Quaternion oRotation)
@@ -568,15 +547,7 @@ public class GrabObject : MonoBehaviour
             yield return null;
         }
 
-        heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
-        heldObj.transform.position = oPos;
-        heldObj.transform.localScale = oScale;
-        heldObj.transform.rotation = oRotation;
-        heldObj.layer = originaLayer;
-        heldObjRB.useGravity = true;
-        heldObjRB.constraints = RigidbodyConstraints.None;
-        heldObjRB.transform.parent = null;
-        heldObj = null;
+        HandleObject();
         FPC.cameraCanMove = true;
         canPickup = true;
     }
@@ -611,7 +582,13 @@ public class GrabObject : MonoBehaviour
         {
             child.gameObject.layer = originaLayer;
         }
+        HandleObject();
+        
+    }
 
+    //Two functions created to decrease repeating code
+    private void HandleObject()
+    {
         heldObj.layer = originaLayer;
         heldObjRB.useGravity = true;
         heldObjRB.transform.parent = null;
@@ -620,5 +597,19 @@ public class GrabObject : MonoBehaviour
         heldObj.transform.rotation = oRotation;
         heldObjRB.constraints = RigidbodyConstraints.None;
         heldObj = null;
+    }
+    
+    private void ObjectHandling(GameObject pickObj)
+    {
+        originaLayer = pickObj.layer;
+        heldObjRB = pickObj.GetComponent<Rigidbody>();
+        heldObjRB.useGravity = false;
+        heldObjRB.constraints = RigidbodyConstraints.FreezeAll;
+        heldObjRB.transform.parent = holdArea;
+        heldObj = pickObj;
+        pickObj.layer = LayerMask.NameToLayer("FirstPerson");
+        oPos = heldObj.transform.position;
+        oScale = heldObj.transform.localScale;
+        oRotation = heldObj.transform.rotation;
     }
 }
