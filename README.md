@@ -1,5 +1,9 @@
 
-Certainly! Here are some corrections for grammar and spelling errors:
+# Internship: Virtual Reality Learning Lab
+
+Author :  Elijah Kaijser (1022177)
+
+Last edited on: 21-01-2024
 
 # 1. Project Requirements
 
